@@ -25,8 +25,8 @@ var updateClock = function() {
   var seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
   // Display the result in the element with id="demo"
-  document.getElementById("main-clock").innerHTML = days + "d " + hours + "h "
-  + minutes + "m " + seconds + "s ";
+  document.getElementById("main-clock").innerHTML = ('0' + hours).slice(-2) + "h "
+  + ('0' + minutes).slice(-2) + "m " + ('0' + seconds).slice(-2) + "s ";
 
   // If the count down is finished, write some text
   if (distance < 0) {
