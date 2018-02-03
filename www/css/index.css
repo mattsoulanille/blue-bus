@@ -73,9 +73,16 @@ body {
   height: 80%;
   background: limegreen;
   text-align: center;
-  color: blue;
+  color: White;
   border-radius: 5px;
   font-size: 25px;
+  transition: 80ms;
+}
+
+.pushButton:active {
+    transform: scale(0.85);
+    opacity: 0.6;
+    transition: 100ms;
 }
 
 /* Landscape layout (with min-width) */
