@@ -65,11 +65,11 @@ class busTime {
 	
 	var index = dates.length - 1;	
 	// edge cases!!! FIX ME
-	while (dates[index] > nowDate) {
+	while (dates[index].valueOf() > nowDate.valueOf()) {
 	    index -= 1;
 	}
 	index += 1;
-	index = index % times.length;
+	index = index % dates.length;
 	
 	var nextTime = dates[index].toDate();
 	
