@@ -59,6 +59,22 @@ body {
                                    /* offset horizontal: half of text area width */
 }
 
+.Haverford {
+    background-color: black;
+    color: red;
+}
+
+.pushButton {
+  margin: auto;
+  width: 60%;
+  padding: 10px;
+  height: 80%;
+  background: limegreen;
+  text-align: center;
+  color: blue;
+  border-radius: 5px;
+}
+
 /* Landscape layout (with min-width) */
 @media screen and (min-aspect-ratio: 1/1) and (min-width:400px) {
     .app {
