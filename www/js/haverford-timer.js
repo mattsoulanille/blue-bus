@@ -4,7 +4,7 @@ var HaverfordDate = new Date("Feb 3, 2018 20:37:25").getTime();
 var HaverfordDate2 = new Date("Feb 3, 2018 20:57:25").getTime();
 var BrynMawrDate = new Date("Feb 3, 2018 21:37:25").getTime();
 var BrynMawrDate2 = new Date("Feb 3, 2018 21:57:25").getTime();
-
+var test = bus.getNextBus("Haverford");
 
 // Update the count down every 1 second
 var updateClock = function() {
@@ -14,7 +14,11 @@ var updateClock = function() {
   //alert(MAINVIEW);
   // Find the distance between now an the count down date
   if (MAINVIEW == "HAVERFORD") {
-    var distance1 = HaverfordDate - now;
+    var distance1;
+    var nextBus = bus.getNextBus("Haverford");
+    nextBus.then(function(date){
+      distance1 = date.getTime() - now;
+    })
     var distance2 = HaverfordDate2 - now;
   }
   else {
