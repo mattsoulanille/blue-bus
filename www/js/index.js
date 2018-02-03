@@ -16,6 +16,14 @@
  * specific language governing permissions and limitations
  * under the License.
  */
+//from sitepoint.com/ ..
+
+// we need 2 deadlines because schedules are diff
+getTimeRemaining(deadline).minutes
+
+initializeClock('haverford-clock', deadline);
+initializeClock('brynmawr-clock', deadline);
+
 var app = {
     // Application Constructor
     initialize: function() {
@@ -36,6 +44,13 @@ var app = {
         console.log('Received Device Ready Event');
         console.log('calling setup push');
         app.setupPush();
+        $(".pushButton").click(function(){
+          //alert("Clicked!");
+        });
+
+        $(".pushButton").on( "swipe", function(event){
+          $(".pushButton").hide();
+        });
     },
     setupPush: function() {
         console.log('calling push init');

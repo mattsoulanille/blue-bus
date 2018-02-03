@@ -116,7 +116,7 @@ body {
     height: 20%;
 }
 
-#haverford-clock {
+#main-clock {
   position: relative;
   margin: auto;
   width: 60%;
@@ -127,22 +127,11 @@ body {
   color: White;
   border-radius: 5px;
   font-size: 25px;
-  transition: 80ms;
+  transition: background 80ms linear;
+  -webkit-transition: background 80ms linear;
+  -moz-transition: background 80ms linear;
 }
 
-#brynmawr-clock {
-  position: block;
-  margin: auto;
-  width: 60%;
-  /*margin: 150px 0px 0px 40px; */
-  height: 80%;
-  background: red;
-  text-align: center;
-  color: White;
-  border-radius: 5px;
-  font-size: 25px;
-  transition: 80ms;
-}
 
 /* Landscape layout (with min-width) */
 @media screen and (min-aspect-ratio: 1/1) and (min-width:400px) {
@@ -207,7 +196,7 @@ h1 {
     text-align: center;
     padding-top: 40px;
     padding-bottom: 40px;
-    
+
 }
 
 #hc-header {
@@ -259,7 +248,7 @@ h1 {
 
 }
 
-#hc-clock {
+#main-clock {
     position: inline-block;
     font-size: 40px;
     text-align: center;
