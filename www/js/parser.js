@@ -56,33 +56,46 @@ class busTime {
 	}
 	var times = this.times[school];
 
-	var nowDate = new Date();
+	var nowDate = moment();
 
 	var now = {
-	    days : nowDate.getDay(),
-	    hours : nowDate.getHours(),
-	    minutes : nowDate.getMinutes()
+	    days : nowDate.day(),
+	    hours : nowDate.hours(),
+	    minutes : nowDate.minutes()
 	};
 
-	var index = times.length - 1;	
-	var closest = times[index];
+	var nowDates = times.map(function(time) {
+	    var start = moment().startOf('week');
+	    // Monday is 1, sunday is 0
+	    start.add(time.days - 1, "days");
+	    start.add(time.hours, "hours");
+	    start.add(time.minutes, "minutes");
+	    return start;
+	});
+	
+	
+	var futureDates = times.map(function(time) {
+	    var start = moment().startOf('week');
+	    start.add(time.days + 6, "days");
+	    start.add(time.hours, "hours");
+	    start.add(time.minutes, "minutes");
+	    return start;
+	});
+	
+	var dates = [...nowDates, ...futureDates];
+
+	var index = dates.length - 1;	
 	// edge cases!!! FIX ME
-	while (!this.compareTimes(now, times[index]) && times[index]) {
+	while (dates[index] > nowDate) {
 	    index -= 1;
 	}
 	index += 1;
 	index = index % times.length;
-
-	var nextTime = times[index];
 	
-	// This introduces a bunch of edge cases fix plz
-	var nextBus = new Date(nowDate.getYear(),
-			       nowDate.getMonth(),
-			       nextTime.days,
-			       nextTime.hours,
-			       nextTime.minutes,
-			       0);
-	return nextBus;
+	var nextTime = dates[index].toDate();
+	
+
+	return nextTime;
 
     }
 
