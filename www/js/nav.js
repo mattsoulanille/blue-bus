@@ -4,7 +4,6 @@ $(document).ready(function(event){
   $('#HaverfordButton').click(function(){
     MAINVIEW = "HAVERFORD"
     setView();
-    $('#main-clock').css({'background': '#A60000'});
     $(this).css({'transform': 'scale(0.85)'})
     $('#BrynMawrButton').css({'transform': 'scale(1)'})
     setView();
@@ -14,7 +13,6 @@ $(document).ready(function(event){
   $('#BrynMawrButton').click(function(){
     MAINVIEW = "BRYNMAWR";
     setView();
-    $('#main-clock').css({'background': '#03335F'});
     $(this).css({'transform': 'scale(0.85)'})
     $('#HaverfordButton').css({'transform': 'scale(1)'})
   });
