@@ -9,6 +9,9 @@ function setView(){
     $('#currentViewHeader').addClass('hc-header');
     $('#currentViewDesc').removeClass('bmc-desc');
     $('#currentViewDesc').addClass('hc-desc');
+
+    $('#main-clock').css({'background': '#A60000'});
+    $('#small-clock').css({'background': '#A60000'});
   }
   else {
     $('#currentViewHeader').text('Bryn Mawr');
@@ -18,5 +21,8 @@ function setView(){
     $('#currentViewHeader').addClass('bmc-header');
     $('#currentViewDesc').removeClass('hc-desc');
     $('#currentViewDesc').addClass('bmc-desc');
+
+    $('#main-clock').css({'background': '#03335F'});
+    $('#small-clock').css({'background': '#03335F'});
   }
 }
