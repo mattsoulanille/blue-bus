@@ -16,6 +16,12 @@
  * specific language governing permissions and limitations
  * under the License.
  */
+
+// Debug
+var bus = new busTime();
+var times;
+bus.getTimes().then(function(a) {times = a;});
+
 var app = {
     // Application Constructor
     initialize: function() {
