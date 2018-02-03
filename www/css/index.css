@@ -59,31 +59,20 @@ body {
                                    /* offset horizontal: half of text area width */
 }
 
+.Haverford {
+    background-color: black;
+    color: red;
+}
+
 .pushButton {
   margin: auto;
   width: 60%;
   padding: 10px;
+  height: 80%;
   background: limegreen;
   text-align: center;
+  color: blue;
   border-radius: 5px;
-}
-
-.pushButton p {
-    color: white;
-}
-
-.pushButton:hover {
-    transition: 150ms;
-}
-
-.pushButton:hover p {
-    transition: 150ms;
-}
-
-.pushButton:active {
-    transform: scale(0.85);
-    opacity: 0.6;
-    transition: 100ms;
 }
 
 /* Landscape layout (with min-width) */
