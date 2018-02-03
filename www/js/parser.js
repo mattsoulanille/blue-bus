@@ -20,8 +20,13 @@ class busTime {
 	}
 	return null;
     }
-    
+
     async getNextBus(school) {
+	var buses = await this.getNextBuses(school, 1);
+	return buses[0];
+    }
+    
+    async getNextBuses(school, count) {
 	if (this.times == null) {
 	    await this.getTimes();
 	}
@@ -70,12 +75,14 @@ class busTime {
 	}
 	index += 1;
 	index = index % dates.length;
-	
-	var nextTime = dates[index].toDate();
-	
 
-	return nextTime;
+	var nextBusTimes = [];
+	for (var i = 0; i < count; i++) {
+	    nextBusTimes.push(dates[index].toDate());
+	    index += 1;
+	}
 
+	return nextBusTimes;
     }
 
     
