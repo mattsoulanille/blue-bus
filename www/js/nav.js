@@ -1,19 +1,22 @@
 $(document).ready(function(event){
-  //alert("working");
+  setView();
+
+
   $('#HaverfordButton').click(function(){
     MAINVIEW = "HAVERFORD"
-    updateClock();
-    $('#main-clock').css({'background': 'red'});
+    setView();
+    $('#main-clock').css({'background': '#A60000'});
+    $(this).css({'transform': 'scale(0.85)'})
+    $('#BrynMawrButton').css({'transform': 'scale(1)'})
+    setView();
   });
+
 
   $('#BrynMawrButton').click(function(){
     MAINVIEW = "BRYNMAWR";
-    updateClock();
-    $('#main-clock').css({'background': 'blue'});
-  });
-
-  $('#HaverfordButton').on('tap', function(){
-    alert("wow!");
-    $(this).hide();
+    setView();
+    $('#main-clock').css({'background': '#03335F'});
+    $(this).css({'transform': 'scale(0.85)'})
+    $('#HaverfordButton').css({'transform': 'scale(1)'})
   });
 });

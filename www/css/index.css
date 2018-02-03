@@ -199,8 +199,7 @@ h1 {
 
 }
 
-#hc-header {
-    /*display:none;*/
+.hc-header {
     text-align: center;
     background-color: #003399;
     font-size: 60px;
@@ -209,8 +208,7 @@ h1 {
     font-weight: 900;
 }
 
-#bmc-header {
-    display:none;
+.bmc-header {
     text-align: center;
     background-color: #003399;
     font-size: 60px;
