@@ -4,6 +4,7 @@ function setView(){
   if (MAINVIEW == 'HAVERFORD') {
     $('#currentViewHeader').text('Haverford');
     $('#currentViewDesc').text('Going to Bryn Mawr');
+
     $('#currentViewHeader').removeClass('bmc-header');
     $('#currentViewHeader').addClass('hc-header');
     $('#currentViewDesc').removeClass('bmc-desc');
@@ -12,9 +13,10 @@ function setView(){
   else {
     $('#currentViewHeader').text('Bryn Mawr');
     $('#currentViewDesc').text('Going to Haverford');
+
     $('#currentViewHeader').removeClass('hc-header');
     $('#currentViewHeader').addClass('bmc-header');
     $('#currentViewDesc').removeClass('bmc-desc');
-    $('#currentViewDesc').addClass('hc-desc'); 
+    $('#currentViewDesc').addClass('hc-desc');
   }
 }

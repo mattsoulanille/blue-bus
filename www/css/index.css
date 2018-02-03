@@ -217,7 +217,11 @@ h1 {
 }
 
 #bmc-desc {
-  
+    background: #A60000;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 31px;
+    color:white;
+    padding-bottom: 10px;
 }
 
 .clock {
