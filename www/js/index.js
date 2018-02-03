@@ -37,7 +37,7 @@ var app = {
         console.log('calling setup push');
         app.setupPush();
         $(".pushButton").click(function(){
-          $(this).hide();
+          //alert("Clicked!");
         });
 
         $(".pushButton").on( "swipe", function(event){
