@@ -25,7 +25,8 @@
     <!-- from https://jquery.com/ -->
     <script src="library/jquery-3.3.1.js"></script>
 
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat|Open+Sans" rel="stylesheet">
+
 
     <meta charset="utf-8" />
     <meta name="format-detection" content="telephone=no" />
@@ -48,8 +49,24 @@
 </head>
 
 <body>
+    <div class="header"> 
+        <div id="hc-header"> Haverford </div>
+        <div id="bmc-header"> Bryn Mawr</div>
+        
+        <div class="description">
+            <div id="hc-desc"> going to Bryn Mawr </div>
+            <div id="bmc-desc"> going to Haverford </div>
+        </div>
+       
+    </div>
+    
+    <div class="clock">
+        <div id="hc-clock"></div>
+        <div id="bmc-clock"></div>
+    
+    </div>
+    
     <div class="app">
-        <div class="Haverford">Haverford</div>
         <div id="registration" class="blink">
             <p class="event waiting">Requesting Registration ID</p>
             <p class="event received">Registered</p>
