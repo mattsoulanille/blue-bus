@@ -125,7 +125,7 @@ body {
     height: 50px;
 }
 
-#haverford-clock {
+#main-clock {
   position: relative;
   margin: auto;
   width: 60%;
@@ -136,22 +136,11 @@ body {
   color: White;
   border-radius: 5px;
   font-size: 25px;
-  transition: 80ms;
+  transition: background 80ms linear;
+  -webkit-transition: background 80ms linear;
+  -moz-transition: background 80ms linear;
 }
 
-#brynmawr-clock {
-  position: relative;
-  margin: auto;
-  width: 60%;
-  margin: 150px 0px 0px 40px;
-  height: 80%;
-  background: limegreen;
-  text-align: center;
-  color: White;
-  border-radius: 5px;
-  font-size: 25px;
-  transition: 80ms;
-}
 
 /* Landscape layout (with min-width) */
 @media screen and (min-aspect-ratio: 1/1) and (min-width:400px) {
