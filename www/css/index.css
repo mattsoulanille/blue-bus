@@ -70,7 +70,7 @@ body {
     background: crimson;
 } */
 
-.HaverfordButton {
+#HaverfordButton {
     margin: auto;
     width: 50%;
     float: left;
@@ -87,13 +87,13 @@ body {
     transition: 80ms;
 }
 
-.HaverfordButton:active {
+#HaverfordButton:active {
     transform: scale(0.85);
     opacity: 0.6;
     transition: 100ms;
 }
 
-.BrynMawrButton {
+#BrynMawrButton {
     margin: auto;
     width: 50%;
     float: left;
@@ -110,7 +110,7 @@ body {
     transition: 80ms;
 }
 
-.BrynMawrButton:active {
+#BrynMawrButton:active {
     transform: scale(0.85);
     opacity: 0.6;
     transition: 100ms;
@@ -139,10 +139,18 @@ body {
   transition: 80ms;
 }
 
-#haverford-clock:active {
-    transform: scale(0.85);
-    opacity: 0.6;
-    transition: 100ms;
+#brynmawr-clock {
+  position: relative;
+  margin: auto;
+  width: 60%;
+  margin: 150px 0px 0px 40px;
+  height: 80%;
+  background: limegreen;
+  text-align: center;
+  color: White;
+  border-radius: 5px;
+  font-size: 25px;
+  transition: 80ms;
 }
 
 /* Landscape layout (with min-width) */
