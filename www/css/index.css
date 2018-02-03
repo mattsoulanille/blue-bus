@@ -59,6 +59,33 @@ body {
                                    /* offset horizontal: half of text area width */
 }
 
+.pushButton {
+  margin: auto;
+  width: 60%;
+  padding: 10px;
+  background: limegreen;
+  text-align: center;
+  border-radius: 5px;
+}
+
+.pushButton p {
+    color: white;
+}
+
+.pushButton:hover {
+    transition: 150ms;
+}
+
+.pushButton:hover p {
+    transition: 150ms;
+}
+
+.pushButton:active {
+    transform: scale(0.85);
+    opacity: 0.6;
+    transition: 100ms;
+}
+
 /* Landscape layout (with min-width) */
 @media screen and (min-aspect-ratio: 1/1) and (min-width:400px) {
     .app {
