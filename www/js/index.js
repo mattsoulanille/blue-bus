@@ -36,6 +36,13 @@ var app = {
         console.log('Received Device Ready Event');
         console.log('calling setup push');
         app.setupPush();
+        $(".pushButton").click(function(){
+          $(this).hide();
+        });
+
+        $(".pushButton").on( "swipe", function(event){
+          $(".pushButton").hide();
+        });
     },
     setupPush: function() {
         console.log('calling push init');
