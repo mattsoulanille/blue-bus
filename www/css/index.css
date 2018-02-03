@@ -23,19 +23,9 @@
 body {
     -webkit-touch-callout: none;                /* prevent callout to copy image, etc when tap to hold */
     -webkit-user-select: none;                  /* prevent copy paste, to allow, change 'none' to 'text' */
-    background-color:#E4E4E4;
-    background-image:linear-gradient(top, #A7A7A7 0%, #E4E4E4 51%);
-    background-image:-webkit-linear-gradient(top, #A7A7A7 0%, #E4E4E4 51%);
-    background-image:-ms-linear-gradient(top, #A7A7A7 0%, #E4E4E4 51%);
-    background-image:-webkit-gradient(
-        linear,
-        left top,
-        left bottom,
-        color-stop(0, #A7A7A7),
-        color-stop(0.51, #E4E4E4)
-    );
+    background-color:white;
     background-attachment:fixed;
-    font-family:'sans-serif', 'HelveticaNeue', Helvetica, Arial, sans-serif;
+    font-family: 'Open Sans', sans-serif;
     font-size:12px;
     height:100%;
     margin:0px;
@@ -70,7 +60,7 @@ body {
     background: crimson;
 } */
 
-.HaverfordButton {
+#HaverfordButton {
     margin: auto;
     width: 50%;
     float: left;
@@ -87,13 +77,13 @@ body {
     transition: 80ms;
 }
 
-.HaverfordButton:active {
+#HaverfordButton:active {
     transform: scale(0.85);
     opacity: 0.6;
     transition: 100ms;
 }
 
-.BrynMawrButton {
+#BrynMawrButton {
     margin: auto;
     width: 50%;
     float: left;
@@ -110,40 +100,22 @@ body {
     transition: 80ms;
 }
 
-.BrynMawrButton:active {
+#BrynMawrButton:active {
     transform: scale(0.85);
     opacity: 0.6;
     transition: 100ms;
 }
 
 .Haverford {
-    background-color: black;
-    size: 50px;
-    font-size: 30px;
+    background-color: rebeccapurple;
+    text-align: center;
+    width: 50%;
+    font-size: 10px;
     color: red;
     padding: 0px;
-    height: 50px;
+    height: 20%;
 }
 
-.pushButton {
-  position: relative;
-  margin: auto;
-  width: 60%;
-  margin: 150px 0px 0px 40px;
-  height: 80%;
-  background: limegreen;
-  text-align: center;
-  color: White;
-  border-radius: 5px;
-  font-size: 25px;
-  transition: 80ms;
-}
-
-.pushButton:active {
-    transform: scale(0.85);
-    opacity: 0.6;
-    transition: 100ms;
-}
 
 /* Landscape layout (with min-width) */
 @media screen and (min-aspect-ratio: 1/1) and (min-width:400px) {
@@ -198,4 +170,123 @@ h1 {
 .blink {
     animation:fade 3000ms infinite;
     -webkit-animation:fade 3000ms infinite;
+}
+
+.header {
+    position:block;
+    background:white;
+    width:100%;
+    text-align: center;
+    padding-bottom: 40px;
+    color: white;
+}
+
+.hc-header {
+    text-align: center;
+    background-color: #A60000;
+    padding-top: 20px;
+    padding-bottom: 22px;
+    font-size: 60px;
+    font-style:'Montserrat', sans-serif;
+    font-style: bold;
+    font-weight: 900;
+}
+
+.bmc-header {
+    text-align: center;
+    background-color: #03335F;
+    padding-top: 20px;
+    padding-bottom: 22px;
+    font-size: 60px;
+    font-style:'Montserrat', sans-serif;
+    font-style: bold;
+    font-weight: 900;
+}
+
+.description {
+    position: inherit;
+    width: 100%;
+    margin-top:0px;
+}
+
+.hc-desc {
+    background: black;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 31px;
+    color:white;
+    padding-top: 5px;
+    padding-bottom: 10px;
+}
+
+.bmc-desc {
+    background-color: #F3B720;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 31px;
+    color:white;
+    padding-top: 5px;
+    padding-bottom: 10px;
+}
+
+.clock {
+    display:block;
+    justify-content: center;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    width:100%;
+    padding: 0px;
+    background-color:white;
+    text-align: center;
+    font-family: 'Open Sans', sans-serif;
+
+}
+
+#main-clock-desc {
+    position: relative;
+    text-align: center;
+    background: white;
+    font-size: 24px;
+    font-family: 'Open Sans', sans-serif;
+    font-style: italic;
+    font-weight: lighter;
+    padding-bottom: 5px;
+}
+
+#small-clock-desc {
+    position: relative;
+    text-align: center;
+    background: white;
+    font-size: 20px;
+    font-family: 'Open Sans', sans-serif;
+    font-style: italic;
+    font-weight: lighter;
+    padding-bottom: 3px;
+}
+
+#main-clock {
+    position: relative;
+    text-align: center;
+    background: black;
+    color: white;
+    width: 100%;
+    font-size: 60px;
+    margin-bottom: 40px;
+    transition: background 80ms linear;
+    -webkit-transition: background 80ms linear;
+    -moz-transition: background 80ms linear;
+
+}
+
+#small-clock {
+    position: relative;
+    text-align: center;
+    transform: scale(.8);
+    background: black;
+    color:white;
+    font-size:35px;
+    transition: background 80ms linear;
+    -webkit-transition: background 80ms linear;
+    -moz-transition: background 80ms linear;
+}
+
+
 }

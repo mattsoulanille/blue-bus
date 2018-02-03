@@ -27,6 +27,7 @@
     <!-- Note that this script needs access to http://www.brynmawr.edu/transportation/bico.shtml -->
     <script src="js/parser.js"></script>
     
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
     <meta charset="utf-8" />
     <meta name="format-detection" content="telephone=no" />
     <meta name="msapplication-tap-highlight" content="no" />
@@ -48,35 +49,42 @@
 </head>
 
 <body>
-    <div class="app">
-        <div class="Haverford">Haverford</div>
-        <div id="haverford-clock">
-            Hours: <span class="hours"></span><br>
-            Minutes: <span class="minutes"></span><br>
-            Seconds: <span class="seconds"></span>
+    <div class="header">
+        <div id="currentViewHeader"></div>
+        <div class="description">
+          <div id="currentViewDesc"></div>
         </div>
-        <div id="registration" class="blink">
-            <p class="event waiting">Requesting Registration ID</p>
-            <p class="event received">Registered</p>
-        </div>
-        <div class="pushButton">
-            <p>Hello!</p>
-        </div>
+      </div>
+
+
+
+    <div class="clock">
+      <div id="main-clock-desc"> Bus leaves in:</div>
+      <div id="main-clock"></div>
+      <div id="small-clock-desc">Next bus is in:</div>
+      <div id="small-clock">this is a small clock</div>
+
     </div>
+
     <div class="navBar">
-        <div class="HaverfordButton">
+        <div id="HaverfordButton">
             <p>Haverford</p>
         </div>
-        <div class="BrynMawrButton">
+        <div id="BrynMawrButton">
             <p>Bryn Mawr</p>
         </div>
     </div>
     <script type="text/javascript" src="cordova.js"></script>
     <script type="text/javascript" src="js/index.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script type="text/javascript">
         app.initialize();
+        var MAINVIEW = "HAVERFORD";
     </script>
+    <script type="text/javascript" src="js/haverford-timer.js"></script>
+    <script type="text/javascript" src="js/brynmawr-timer.js"></script>
+    <script type="text/javascript" src="js/button-toggle.js"></script>
+    <script type="text/javascript" src="js/view.js"></script>
+    <script type="text/javascript" src="js/nav.js"></script>
 </body>
 
 </html>

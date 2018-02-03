@@ -13,14 +13,14 @@ function getTimeRemaining(endtime){
   };
 }
 
-function initializeClock(id, endtime){
+function initializeClock(id,  endtime){
   var clock = document.getElementById(id);
   var timeinterval = setInterval(function(){
     var t = getTimeRemaining(endtime);
     hoursSpan.innerHTML = ('0' + t.hours).slice(-2);
   	minutesSpan.innerHTML = ('0' + t.minutes).slice(-2);
   	secondsSpan.innerHTML = ('0' + t.seconds).slice(-2);
-   
+
     if(t.total<=0){
       clearInterval(timeinterval);
     }

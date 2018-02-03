@@ -21,6 +21,13 @@
 var bus = new busTime();
 var times;
 bus.getTimes().then(function(a) {times = a;});
+//from sitepoint.com/ ..
+
+// we need 2 deadlines because schedules are diff
+getTimeRemaining(deadline).minutes;
+
+initializeClock('haverford-clock', deadline);
+initializeClock('brynmawr-clock', deadline);
 
 var app = {
     // Application Constructor
