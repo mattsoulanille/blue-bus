@@ -23,7 +23,7 @@
 body {
     -webkit-touch-callout: none;                /* prevent callout to copy image, etc when tap to hold */
     -webkit-user-select: none;                  /* prevent copy paste, to allow, change 'none' to 'text' */
-    background-color:whitesmoke;
+    background-color:white;
     background-attachment:fixed;
     font-family: 'Open Sans', sans-serif;
     font-size:12px;
@@ -174,11 +174,9 @@ h1 {
 
 .header {
     position:block;
-    margin-top: 40px;
-    background:whitesmoke;
+    background:white;
     width:100%;
     text-align: center;
-    padding-top: 40px;
     padding-bottom: 40px;
     color: white;
 }
@@ -186,6 +184,8 @@ h1 {
 .hc-header {
     text-align: center;
     background-color: #A60000;
+    padding-top: 20px;
+    padding-bottom: 22px;
     font-size: 60px;
     font-style:'Montserrat', sans-serif;
     font-style: bold;
@@ -195,6 +195,8 @@ h1 {
 .bmc-header {
     text-align: center;
     background-color: #03335F;
+    padding-top: 20px;
+    padding-bottom: 22px;
     font-size: 60px;
     font-style:'Montserrat', sans-serif;
     font-style: bold;
@@ -212,6 +214,7 @@ h1 {
     font-family: 'Open Sans', sans-serif;
     font-size: 31px;
     color:white;
+    padding-top: 5px;
     padding-bottom: 10px;
 }
 
@@ -220,6 +223,7 @@ h1 {
     font-family: 'Open Sans', sans-serif;
     font-size: 31px;
     color:white;
+    padding-top: 5px;
     padding-bottom: 10px;
 }
 
@@ -228,19 +232,29 @@ h1 {
     justify-content: center;
     padding-top: 20px;
     padding-bottom: 20px;
-    margin-top:20px;
     width:100%;
     padding: 0px;
-    background-color:whitesmoke;
+    background-color:white;
     text-align: center;
+    font-family: 'Open Sans', sans-serif;
 
+}
+
+#clock-desc {
+    position: relative;
+    text-align: center;
+    background: white;
+    font-size: 24px;
+    font-family: 'Open Sans', sans-serif;
+    font-style: italic;
+    padding-bottom: 5px;
 }
 
 #main-clock {
     position: relative;
     text-align: center;
     background: black;
-    color: whitesmoke;
+    color: white;
     width: 100%;
     font-size: 60px;
     margin-bottom: 40px;
