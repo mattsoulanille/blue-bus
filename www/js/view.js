@@ -16,7 +16,7 @@ function setView(){
 
     $('#currentViewHeader').removeClass('hc-header');
     $('#currentViewHeader').addClass('bmc-header');
-    $('#currentViewDesc').removeClass('bmc-desc');
-    $('#currentViewDesc').addClass('hc-desc');
+    $('#currentViewDesc').removeClass('hc-desc');
+    $('#currentViewDesc').addClass('bmc-desc');
   }
 }

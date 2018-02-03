@@ -180,7 +180,7 @@ h1 {
     text-align: center;
     padding-top: 40px;
     padding-bottom: 40px;
-
+    color: white;
 }
 
 .hc-header {
@@ -190,12 +190,11 @@ h1 {
     font-style:'Montserrat', sans-serif;
     font-style: bold;
     font-weight: 900;
-    color: white;
 }
 
 .bmc-header {
     text-align: center;
-    background-color: #003399;
+    background-color: #03335F;
     font-size: 60px;
     font-style:'Montserrat', sans-serif;
     font-style: bold;
@@ -208,16 +207,16 @@ h1 {
     margin-top:0px;
 }
 
-#hc-desc {
-    background: #A60000;
+.hc-desc {
+    background: black;
     font-family: 'Open Sans', sans-serif;
     font-size: 31px;
     color:white;
     padding-bottom: 10px;
 }
 
-#bmc-desc {
-    background: #A60000;
+.bmc-desc {
+    background-color: #F3B720;
     font-family: 'Open Sans', sans-serif;
     font-size: 31px;
     color:white;
