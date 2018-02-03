@@ -1,11 +1,5 @@
 // Got code from https://www.w3schools.com/howto/howto_js_countdown.asp
 // Set the date we're counting down to
-var HaverfordDate = new Date("Feb 3, 2018 20:37:25").getTime();
-var HaverfordDate2 = new Date("Feb 3, 2018 20:57:25").getTime();
-var BrynMawrDate = new Date("Feb 3, 2018 21:37:25").getTime();
-var BrynMawrDate2 = new Date("Feb 3, 2018 21:57:25").getTime();
-var test = bus.getNextBus("Haverford");
-
 // Update the count down every 1 second
 var updateClock = function() {
 
@@ -15,19 +9,28 @@ var updateClock = function() {
   // Find the distance between now an the count down date
   if (MAINVIEW == "HAVERFORD") {
     var distance1;
-    var nextBus = bus.getNextBus("Haverford");
-    nextBus.then(function(date){
-      distance1 = date.getTime() - now;
+    var distance2;
+    var nextBuses = bus.getNextBuses("Haverford",2);
+    nextBuses.then(function(dates){
+      distance1 = dates[0].getTime() - now;
+      distance2 = dates[1].getTime() - now;
+      $("#main-clock").html(formatCountdown(distance1));
+      $("#small-clock").html(formatCountdown(distance2));
     })
-    var distance2 = HaverfordDate2 - now;
   }
   else {
-    var distance1 = BrynMawrDate - now;
-    var distance2 = BrynMawrDate2 - now;
+    var distance1;
+    var distance2;
+    var nextBuses = bus.getNextBuses("Brynmawr",2);
+    nextBuses.then(function(dates){
+      distance1 = dates[0].getTime() - now;
+      distance2 = dates[1].getTime() - now;
+      $("#main-clock").html(formatCountdown(distance1));
+      $("#small-clock").html(formatCountdown(distance2));
+    })
   }
 
   // Display the result in the element with id="demo"
-  $("#main-clock").html(formatCountdown(distance1));
   $("#small-clock").html(formatCountdown(distance2));
 
   // If the count down is finished, write some text
@@ -48,7 +51,12 @@ var formatCountdown = function(distance) {
   var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
   var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
   var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
+  if(hours == 0){
+    return ('0' + minutes).slice(-2) + "m " + ('0' + seconds).slice(-2) + "s "
+  }
+  if(minutes == 0){
+    ('0' + seconds).slice(-2) + "s ";
+  }
   return ('0' + hours).slice(-2) + "h "
         + ('0' + minutes).slice(-2) + "m " + ('0' + seconds).slice(-2) + "s ";
 }
