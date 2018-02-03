@@ -50,10 +50,8 @@ class busTime {
 	return false;
     }
     
-    async getNextBus(school) {
-	if (this.times == null) {
-	    await this.getTimes();
-	}
+    getNextBus(school) {
+	// might break
 	var times = this.times[school];
 
 	var nowDate = moment();
@@ -84,6 +82,13 @@ class busTime {
 	
 	var dates = [...nowDates, ...futureDates];
 
+	//https://thomaskekeisen.de/en/blog/array-date-sort-lodash-momentjs/
+	//_.sortBy(dates, function(o) {return o.valueOf();});
+	dates.sort(function(a,b) {
+	    return a.valueOf() - b.valueOf();
+	});
+
+	
 	var index = dates.length - 1;	
 	// edge cases!!! FIX ME
 	while (dates[index] > nowDate) {
