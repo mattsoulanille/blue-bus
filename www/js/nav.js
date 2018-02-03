@@ -1,7 +1,6 @@
 $(document).ready(function(event){
   setView();
 
-
   $('#HaverfordButton').click(function(){
     MAINVIEW = "HAVERFORD"
     setView();
