@@ -27,7 +27,7 @@ function initializeClock(id, endtime){
   },1000);
 }
 
-function updateClock(id){
+function updateClock(id, endtime){
   var clock = document.getElementById(id);
   var t = getTimeRemaining(endtime);
   hoursSpan.innerHTML = ('0' + t.hours).slice(-2);
@@ -42,5 +42,6 @@ function updateClock(id){
   }
 }
 
+initializeClock('haverford-clock', deadline);
 updateClock(); // run function once at first to avoid delay
 var timeinterval = setInterval(updateClock,1000);

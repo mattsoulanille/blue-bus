@@ -125,7 +125,7 @@ body {
     height: 50px;
 }
 
-.pushButton {
+#haverford-clock {
   position: relative;
   margin: auto;
   width: 60%;
@@ -139,7 +139,7 @@ body {
   transition: 80ms;
 }
 
-.pushButton:active {
+#haverford-clock:active {
     transform: scale(0.85);
     opacity: 0.6;
     transition: 100ms;

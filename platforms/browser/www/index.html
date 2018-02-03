@@ -22,6 +22,9 @@
 <html>
 
 <head>
+    <!-- from https://jquery.com/ -->
+    <script src="library/jquery-3.3.1.js"></script>
+
     <meta charset="utf-8" />
     <meta name="format-detection" content="telephone=no" />
     <meta name="msapplication-tap-highlight" content="no" />
@@ -39,19 +42,36 @@
     <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: 'unsafe-inline' https://ssl.gstatic.com; style-src 'self' 'unsafe-inline'; media-src *" /> -->
 
     <link rel="stylesheet" type="text/css" href="css/index.css" />
-    <title>Hello World</title>
+    <title>Blue Bus Schedule</title>
 </head>
 
 <body>
     <div class="app">
-        <h1>PhoneGap</h1>
+        <div class="Haverford">Haverford</div>
+        <div id="haverford-clock">
+            Hours: <span class="hours"></span><br>
+            Minutes: <span class="minutes"></span><br>
+            Seconds: <span class="seconds"></span>
+        </div>
         <div id="registration" class="blink">
             <p class="event waiting">Requesting Registration ID</p>
             <p class="event received">Registered</p>
         </div>
+        <div class="pushButton">
+            <p>Hello!</p>
+        </div>
+    </div>
+    <div class="navBar">
+        <div class="HaverfordButton">
+            <p>Haverford</p>
+        </div>
+        <div class="BrynMawrButton">
+            <p>Bryn Mawr</p>
+        </div>
     </div>
     <script type="text/javascript" src="cordova.js"></script>
     <script type="text/javascript" src="js/index.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script type="text/javascript">
         app.initialize();
     </script>
