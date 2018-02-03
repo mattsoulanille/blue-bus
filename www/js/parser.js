@@ -12,7 +12,7 @@ class busTime {
     }
 
     getSource(source) {
-	
+
 	for (var valid_source in this.sources) {
 	    if (this.sources[valid_source].has(source) ) {
 		return valid_source;
@@ -25,7 +25,7 @@ class busTime {
 	var buses = await this.getNextBuses(school, 1);
 	return buses[0];
     }
-    
+
     async getNextBuses(school, count) {
 	if (this.times == null) {
 	    await this.getTimes();
@@ -49,8 +49,8 @@ class busTime {
 	    start.add(time.minutes, "minutes");
 	    return start;
 	});
-	
-	
+
+
 	var futureDates = times.map(function(time) {
 	    var start = moment().startOf('week');
 	    start.add(time.days + 6, "days");
@@ -58,7 +58,7 @@ class busTime {
 	    start.add(time.minutes, "minutes");
 	    return start;
 	});
-	
+
 	var dates = [...nowDates, ...futureDates];
 
 	//https://thomaskekeisen.de/en/blog/array-date-sort-lodash-momentjs/
@@ -67,8 +67,8 @@ class busTime {
 	    return a.valueOf() - b.valueOf();
 	});
 
-	
-	var index = dates.length - 1;	
+
+	var index = dates.length - 1;
 	// edge cases!!! FIX ME
 	while (dates[index].valueOf() > nowDate.valueOf()) {
 	    index -= 1;
@@ -85,7 +85,7 @@ class busTime {
 	return nextBusTimes;
     }
 
-    
+
     getTimes(busUrl) {
 
 
@@ -93,22 +93,22 @@ class busTime {
 	function arrayify(thing) {
 	    return Array.prototype.slice.call(thing);
 	}
-	
-	
+
+
 	function parseTable(table) {
 	    // Parses one table objecet
 	    var realHeadings = arrayify(table.tHead.rows).map(function(heading) {
 		return heading.innerText;
 	    });
-	    
+
 	    var day = realHeadings[0].trim();
-	    
+
 	    var blueBusHeadings = realHeadings[1].replace(/ +/g, " ").trim().split("\n").map(function(untrimmed) {
 		return untrimmed.trim();
 	    });
-	    
+
 	    var parsedTable = arrayify(table.tBodies[0].rows).map(factory(blueBusHeadings));
-	    
+
 	    // var out = {};
 	    // out[day] = parsedTable;
 	    // return out;
@@ -122,25 +122,25 @@ class busTime {
 		}, {});
 	    };
 	}
-	
+
 
 	function scrapePage(text) {
-	    
+
 	    var parser = new DOMParser();
 	    var parsedHTML = parser.parseFromString(text, "text/html");
 	    var tables = arrayify(parsedHTML.body.getElementsByTagName("table"));
 	    var parsed = tables.map(parseTable);
-	    
+
 	    return parsed;
 	}
 
 
 	var parseTime = function(scraped) {
 	    // Parses one of their times : "11:30 PM" etc
-	    
+
 
 	}.bind(this);
-	
+
 	var parseTimes = function(scraped) {
 
 	    var times = {};
@@ -190,7 +190,7 @@ class busTime {
 			    var timeSplit = timePart.split(":");
 			    var hours = Number(timeSplit[0]);
 			    var minutes = Number(timeSplit[1]);
-			    
+
 			    if (AMPM == "pm") {
 				hours += 12;
 			    }
@@ -206,28 +206,28 @@ class busTime {
 			}
 
 		    }.bind(this));
-		    
+
 		}.bind(this));
-		
+
 	    }.bind(this));
 	    return times;
 	}.bind(this);
-	
+
 	return new Promise(function(fulfill, reject) {
-	    
+
 	    if (typeof busUrl == "undefined") {
-		
+
 		busUrl = "http://www.brynmawr.edu/transportation/bico.shtml";
 		//busUrl = "http://www.whateverorigin.org/get?url=" + encodeURIComponent(busUrl) + '&callback=?';
 	    }
-	    
+
 	    try {
 		$.get(busUrl, function(response) {
 		    //fulfill(response);
-		    
+
 		    // see https://stackoverflow.com/questions/10585029/parse-a-html-string-with-js
 		    // for parsing info
-		    
+
 		    // Look at https://gist.github.com/WickyNilliams/9252235
 		    var scraped = scrapePage(response);
 		    var times = scraped;
@@ -235,17 +235,13 @@ class busTime {
 		    var parsed_times = parseTimes(times);
 		    this.times = parsed_times;
 		    fulfill([parsed_times, times]);
-		    
+
 		}.bind(this));
 	    }
 	    catch (e) {
 		reject(e);
 	    }
 	}.bind(this));
-	
+
     }
 }
-
-
-    
-
