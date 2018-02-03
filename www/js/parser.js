@@ -20,38 +20,12 @@ class busTime {
 	}
 	return null;
     }
-
-    compareTimes(a,b) {
-	// returns true iff a happens after b
-	// Days
-	if (a.days < b.days) {
-	    return false;
-	}
-	if (a.days > b.days) {
-	    return true;
-	}
-
-
-	// Hours
-	if (a.hours < b.hours) {
-	    return false;
-	}
-	if (a.hours > b.hours) {
-	    return true;
-	}
-
-	// Minutes
-	if (a.minutes < b.minutes) {
-	    return false;
-	}
-	if (a.minutes > b.minutes) {
-	    return true;
-	}
-	return false;
-    }
     
-    getNextBus(school) {
-	// might break
+    async getNextBus(school) {
+	if (this.times == null) {
+	    await this.getTimes();
+	}
+
 	var times = this.times[school];
 
 	var nowDate = moment();
