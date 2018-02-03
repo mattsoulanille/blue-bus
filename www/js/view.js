@@ -12,6 +12,9 @@ function setView(){
 
     $('#main-clock').css({'background': '#A60000'});
     $('#small-clock').css({'background': '#A60000'});
+
+    $('#BrynMawrButton').css({'transform':'', 'opacity':''})
+    $('#HaverfordButton').css({'transform':'scale(1)', 'opacity':'1'})
   }
   else {
     $('#currentViewHeader').text('Bryn Mawr');
@@ -24,5 +27,8 @@ function setView(){
 
     $('#main-clock').css({'background': '#03335F'});
     $('#small-clock').css({'background': '#03335F'});
+
+    $('#HaverfordButton').css({'transform':'', 'opacity':''})
+    $('#BrynMawrButton').css({'transform':'scale(1)', 'opacity':'1'})
   }
 }

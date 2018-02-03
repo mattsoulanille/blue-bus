@@ -75,11 +75,13 @@ body {
     text-align: center;
     color: White;
     transition: 80ms;
+    transform: scale(0.9);
+    opacity: 0.6;
 }
 
 #HaverfordButton:active {
-    transform: scale(1.1);
-    opacity: 1;
+    transform: scale(0.95);
+    opacity: 0.9;
     transition: 100ms;
 }
 
@@ -98,11 +100,13 @@ body {
     text-align: center;
     color: White;
     transition: 80ms;
+    transform: scale(0.9);
+    opacity: 0.6;
 }
 
 #BrynMawrButton:active {
-    transform: scale(1.1);
-    opacity: 1;
+    transform: scale(0.95);
+    opacity: 0.9;
     transition: 100ms;
 }
 

@@ -1,11 +1,9 @@
 $(document).ready(function(event){
+  MAINVIEW = "HAVERFORD";
   setView();
 
   $('#HaverfordButton').click(function(){
     MAINVIEW = "HAVERFORD"
-    setView();
-    $(this).css({'transform':'scale(0.9)', 'opacity':'0.6'})
-    $('#BrynMawrButton').css({'transform':'', 'opacity':''})
     setView();
   });
 
@@ -13,7 +11,5 @@ $(document).ready(function(event){
   $('#BrynMawrButton').click(function(){
     MAINVIEW = "BRYNMAWR";
     setView();
-    $(this).css({'transform':'scale(0.9)', 'opacity':'0.6'})
-    $('#HaverfordButton').css({'transform':'', 'opacity':''})
   });
 });
