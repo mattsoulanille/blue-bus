@@ -23,7 +23,7 @@
 body {
     -webkit-touch-callout: none;                /* prevent callout to copy image, etc when tap to hold */
     -webkit-user-select: none;                  /* prevent copy paste, to allow, change 'none' to 'text' */
-    background-color:#E4E4E4;
+    background-color:whitesmoke;
     background-attachment:fixed;
     font-family: 'Open Sans', sans-serif;
     font-size:12px;
@@ -116,22 +116,6 @@ body {
     height: 20%;
 }
 
-#main-clock {
-  position: relative;
-  margin: auto;
-  width: 60%;
-  margin: 150px 0px 0px 40px;
-  height: 80%;
-  background: limegreen;
-  text-align: center;
-  color: White;
-  border-radius: 5px;
-  font-size: 25px;
-  transition: background 80ms linear;
-  -webkit-transition: background 80ms linear;
-  -moz-transition: background 80ms linear;
-}
-
 
 /* Landscape layout (with min-width) */
 @media screen and (min-aspect-ratio: 1/1) and (min-width:400px) {
@@ -191,7 +175,7 @@ h1 {
 .header {
     position:block;
     margin-top: 40px;
-    background:#f2f2f2;
+    background:whitesmoke;
     width:100%;
     text-align: center;
     padding-top: 40px;
@@ -201,11 +185,12 @@ h1 {
 
 .hc-header {
     text-align: center;
-    background-color: #003399;
+    background-color: #A60000;
     font-size: 60px;
     font-style:'Montserrat', sans-serif;
     font-style: bold;
     font-weight: 900;
+    color: white;
 }
 
 .bmc-header {
@@ -219,15 +204,16 @@ h1 {
 
 .description {
     position: inherit;
-    background: yellow;
     width: 100%;
     margin-top:0px;
-    padding-bottom: 0px;
 }
 
 #hc-desc {
+    background: #A60000;
     font-family: 'Open Sans', sans-serif;
     font-size: 31px;
+    color:white;
+    padding-bottom: 10px;
 }
 
 #bmc-desc {
@@ -236,21 +222,43 @@ h1 {
 
 .clock {
     display:block;
-    position: block;
+    justify-content: center;
     padding-top: 20px;
     padding-bottom: 20px;
     margin-top:20px;
     width:100%;
     padding: 0px;
-    background-color:blue;
+    background-color:whitesmoke;
+    text-align: center;
 
 }
 
 #main-clock {
-    position: inline-block;
-    font-size: 40px;
+    position: relative;
     text-align: center;
-    background:aqua;
-    padding-top: 10px;
-    padding-bottom: 10px;
+    background: black;
+    color: whitesmoke;
+    width: 100%;
+    font-size: 60px;
+    margin-bottom: 40px;
+    transition: background 80ms linear;
+    -webkit-transition: background 80ms linear;
+    -moz-transition: background 80ms linear;
+    
 }
+
+#small-clock {
+    position: relative;
+    text-align: center;
+    transform: scale(.8);
+    background: black;
+    color:white;
+    font-size:35px;
+    transition: background 80ms linear;
+    -webkit-transition: background 80ms linear;
+    -moz-transition: background 80ms linear;
+}
+    
+    
+}
+
