@@ -217,7 +217,7 @@ h1 {
 }
 
 #bmc-desc {
-    display: none;
+  
 }
 
 .clock {
@@ -244,7 +244,7 @@ h1 {
     transition: background 80ms linear;
     -webkit-transition: background 80ms linear;
     -moz-transition: background 80ms linear;
-    
+
 }
 
 #small-clock {
@@ -258,7 +258,6 @@ h1 {
     -webkit-transition: background 80ms linear;
     -moz-transition: background 80ms linear;
 }
-    
-    
-}
 
+
+}
