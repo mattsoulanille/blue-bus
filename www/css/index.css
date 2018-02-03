@@ -36,12 +36,11 @@ body {
         color-stop(0.51, #E4E4E4)
     );
     background-attachment:fixed;
-    font-family:'HelveticaNeue-Light', 'HelveticaNeue', Helvetica, Arial, sans-serif;
+    font-family:'sans-serif', 'HelveticaNeue', Helvetica, Arial, sans-serif;
     font-size:12px;
     height:100%;
     margin:0px;
     padding:0px;
-    text-transform:uppercase;
     width:100%;
 }
 
@@ -58,21 +57,82 @@ body {
                                    /* offset horizontal: half of text area width */
 }
 
+.navBar {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+
+}
+
+/* .HaverfordButton {
+    margin: auto;
+    float: left;
+    width: 50%;
+    border-radius: 10px;
+    background: crimson;
+} */
+
+.HaverfordButton {
+    margin: auto;
+    width: 50%;
+    float: left;
+    font-size: 20px;
+    font-family: sans-serif;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    height: 80%;
+    background: #A60000;
+    text-align: center;
+    color: White;
+    opacity: 0.8;
+    border-radius: 5px;
+    transition: 80ms;
+}
+
+.HaverfordButton:active {
+    transform: scale(0.85);
+    opacity: 0.6;
+    transition: 100ms;
+}
+
+.BrynMawrButton {
+    margin: auto;
+    width: 50%;
+    float: left;
+    font-family: sans-serif;
+    font-size: 20px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    height: 80%;
+    background: #03335F;
+    opacity: 0.8;
+    text-align: center;
+    color: White;
+    border-radius: 5px;
+    transition: 80ms;
+}
+
+.BrynMawrButton:active {
+    transform: scale(0.85);
+    opacity: 0.6;
+    transition: 100ms;
+}
+
 .Haverford {
     background-color: black;
     color: red;
 }
 
 .pushButton {
-  margin: auto;
-  width: 60%;
-  padding: 10px;
-  height: 80%;
-  background: limegreen;
-  text-align: center;
-  color: White;
-  border-radius: 5px;
-  transition: 80ms;
+    margin: auto;
+    width: 60%;
+    padding: 10px;
+    height: 80%;
+    background: limegreen;
+    text-align: center;
+    color: White;
+    border-radius: 5px;
+    transition: 80ms;
 }
 
 .pushButton:active {
