@@ -44,7 +44,7 @@ class busTime {
 	var nowDates = times.map(function(time) {
 	    var start = moment().startOf('week');
 	    // Monday is 1, sunday is 0
-	    start.add(time.days - 1, "days");
+	    start.add(time.days, "days");
 	    start.add(time.hours, "hours");
 	    start.add(time.minutes, "minutes");
 	    return start;
@@ -53,7 +53,8 @@ class busTime {
 
 	var futureDates = times.map(function(time) {
 	    var start = moment().startOf('week');
-	    start.add(time.days + 6, "days");
+	    //start.add(1, "week");
+	    start.add(time.days + 7, "days");
 	    start.add(time.hours, "hours");
 	    start.add(time.minutes, "minutes");
 	    return start;
@@ -162,47 +163,88 @@ class busTime {
 
 	    scraped.forEach(function(timeArray) {
 		var day = dayMap[timeArray[0]];
-
 		var todayTimes = timeArray[1];
+		var previous = [null,null,null,null,null,null];
+		var switchAMtoPM = [0,0,0,0,0,0]; // Hacky as all hell
 
+		var first = [true, true, true, true, true, true];
 		todayTimes.forEach(function(table_row) {
+		    var columnIndex = 0;
 		    Object.keys(table_row).forEach(function(maybe_source) {
-
-
+			
+			var prev = previous[columnIndex];
 			var source = this.getSource(maybe_source);
 			if (source) {
 
 			    // fix me
 			    var unparsed_time = table_row[maybe_source];
 			    var trimmed = unparsed_time.trim().replace(" ", " ");
-			    var timePart = unparsed_time.match(/[0-9]+:[0-9]+/)[0];
+			    // FIX for wednesday 8:45 AM bus
+			    // This is horrible hacks
+			    if (day == 3 && trimmed == "8:45 PM") {
+				trimmed = "8:45 AM";
+			    }
+			    
+			    var timePart = trimmed.match(/[0-9]+:[0-9]+/)[0];
 			    var AMPM;
 			    try {
-				AMPM = unparsed_time.match(/[A|a|P|p][M|m]/)[0].toLowerCase();
+				// In case they didn't put AM / PM, use a try block
+				AMPM = trimmed.match(/[A|a|P|p][M|m]/)[0].toLowerCase();
 			    }
 			    catch (e) {
 				var t = times[source];
-				if (t[t.length - 1].hours >= 12) {
+				if (prev.AMPM == "pm") {
 				    AMPM = "pm";
 				}
 			    }
 
+			    if (first[columnIndex] && AMPM == "pm") {
+				// in case the day starts in the afternoon
+				switchAMtoPM[columnIndex] += 1;
+				first[columnIndex] = false;
+			    }
+
+			    
 			    var timeSplit = timePart.split(":");
 			    var hours = Number(timeSplit[0]);
 			    var minutes = Number(timeSplit[1]);
 
-			    if (AMPM == "pm") {
-				hours += 12;
+			    if ((AMPM == "pm") && (prev !== null) && (prev.AMPM == "am")) {
+				switchAMtoPM[columnIndex] += 1;
+				if (switchAMtoPM[columnIndex] > 1) {
+				    AMPM = "am";
+				}
 			    }
+
+			    if (switchAMtoPM[columnIndex] > 0) {
+				if (AMPM == "pm" && hours != 12) {
+				    // account for pm times 
+				    hours += 12;
+				}
+				if (AMPM == "am") {
+				    if (hours == 12) {
+					// acout for 12am, 1am, 2am etc
+					hours += 12;
+				    }
+				    else {
+					hours += 24;
+				    }
+				}
+
+			    }
+			    
 			    var parsed_time = {
 				days: day,
 				hours : hours,
-				minutes : minutes
+				minutes : minutes,
+				AMPM : AMPM
 			    };
 
 			    // write a sort function for this later
 			    // Don't trust them!
+			    previous[columnIndex] = parsed_time;
 			    times[source].push(parsed_time);
+			    columnIndex += 1;
 			}
 
 		    }.bind(this));
