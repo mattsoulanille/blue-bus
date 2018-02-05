@@ -1,11 +1,14 @@
 <?xml version='1.0' encoding='utf-8'?>
 <widget id="com.bluebus" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
-    <name>Hackathon Blue Bus Reminder</name>
+    <name>Blue Bus Timer</name>
     <description>
-        Push sample application that receives push notifications.
+      Tells you when the next blue bus from Haverford or from Bryn Mawr will depart.
     </description>
-    <author email="support@phonegap.com" href="http://phonegap.com">
-        PhoneGap Team
+    <author email="matthew@soulanille.net">
+      Arthur Chang,
+      Matthew Soulanille,
+      Pablo Thiel,
+      Silvia Susai
     </author>
     <content src="index.html" />
     <preference name="DisallowOverscroll" value="true" />
