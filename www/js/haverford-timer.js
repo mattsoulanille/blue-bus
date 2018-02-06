@@ -2,7 +2,7 @@
 // Set the date we're counting down to
 // Update the count down every 1 second
 var updateClock = function() {
-
+  busTime.getTimes();
   // Get todays date and time
   var now = new Date().getTime();
   //alert(MAINVIEW);
