@@ -11,6 +11,7 @@ class busTime {
 		};
 		this.busUrl = "http://www.brynmawr.edu/transportation/bico.shtml";
     }
+
     getSource(source) {
 
 		for (var valid_source in this.sources) {
@@ -21,7 +22,6 @@ class busTime {
 		return null;
     }
 
-
     getTimes() {
 
 
@@ -30,34 +30,27 @@ class busTime {
 		    return Array.prototype.slice.call(htmlTable);
 		}
 
+		function parseThInTable(table){
+			var ths = arrayify(table.getElementsByTagName("th"));
+			return ths;
+		}
 
-		function parseTable(table) {
+		function parseTdInTable(table) {
+			var tds = arrayify(table.getElementsByTagName("td"));
+			return tds;
+		}
+
+		function parseTrInTable(table) {
 		    // Parses one table objecet
-		    var realHeadings = arrayify(table.tHead.rows).map(function(heading) {
-				return heading.innerText;
-		    });
-
-		    var day = realHeadings[0].trim();
-
-		    var blueBusHeadings = realHeadings[1].replace(/ +/g, " ").trim().split("\n").map(function(untrimmed) {
-				return untrimmed.trim();
-		    });
-
-		    var parsedTable = arrayify(table.tBodies[0].rows).map(factory(blueBusHeadings));
-
-		    // var out = {};
-		    // out[day] = parsedTable;
-		    // return out;
-		    return [day, parsedTable];
+		    var rows = arrayify(table.getElementsByTagName("tr"));
+		    var finalResult = [];
+		    var ths = rows.slice(0,2).map(parseThInTable);
+		    var tds = rows.slice(2,rows.length).map(parseTdInTable);
+		    finalResult.push(ths);
+		    finalResult.push(tds);
+		    return finalResult;
 		}
-		function factory(headings) {
-		    return function(row) {
-			return arrayify(row.cells).reduce(function(prev, curr, i) {
-			    prev[headings[i]] = curr.innerText;
-			    return prev;
-			}, {});
-		    };
-		}
+
 
 
 		function scrapePage(text) {
@@ -65,8 +58,61 @@ class busTime {
 		    var parser = new DOMParser();
 		    var parsedHTML = parser.parseFromString(text, "text/html");
 		    var tables = arrayify(parsedHTML.body.getElementsByTagName("table"));
-		    var parsed = tables.map(parseTable)
+		    var parsed = tables.map(parseTrInTable)
+		    var timeDictionary = {};
+		    for (var dayOfWeek in parsed){
+		    	var dayAsString;
+		    	switch (dayOfWeek){
+		    		case 0:
+		    			dayAsString = "Monday";
+		    			break;
+	    			case 1:
+		    			dayAsString = "Tuesday";
+		    			break;
+		    		case 2:
+		    			dayAsString = "Wednesday";
+		    			break;
+		    		case 1:
+		    			dayAsString = "Thursday";
+		    			break;
+		    		case 1:
+		    			dayAsString = "Friday";
+		    			break;
+		    		case 1:
+		    			dayAsString = "Saturday Daytime";
+		    			break;
+		    		case 1:
+		    			dayAsString = "Saturday Night";
+		    			break;
+		    		case 1:
+		    			dayAsString = "Sunday";
+		    			break;
+		    	}
 
+		    	var day = parsed[dayOfWeek][0][0].innerText;
+		    	var HaverfordColumn;
+		    	var BrynMawrColumn;
+		    	var HaverfordTimes = [];
+		    	var BrynMawrTimes = [];
+		    	for(var column in parsed[dayOfWeek][0][1]) {
+		    		var source = this.getSource(parsed[dayOfWeek][0][1].innerText);
+		    		if(source == Haverford){
+		    			HaverfordColumn = column;
+		    			Haverford = source;
+		    		}
+		    		else if(source == Brynmawr){
+		    			BrynMawrColumn = column;
+		    			BrynMawr = source;
+		    		}
+		    	}
+		    	var dayTimes = parsed[dayOfWeek][1];
+		    	for (var row in dayTimes){
+		    		var HaverfordTime = dayTimes[row][HaverfordColumn];
+		    		var BrynMawrTime = dayTimes[row][BrynMawrColumn];
+		    		HaverfordTimes.push(HaverfordTime);
+		    		BrynMawrTimes.push(BrynMawrTime);
+		    	}
+		    }
 		    return parsed;
 		}
 
