@@ -11,6 +11,7 @@ var updateClock = function() {
   var minutes = now.getMinutes();
   var seconds = now.getSeconds();
   var totalSeconds = day*(24*60*60) + hours*(60*60) + minutes*60 + seconds;
+  var secondsInWeek = 7*24*60*60;
   //alert(MAINVIEW);
   // Find the distance between now an the count down date
   if (MAINVIEW == "HAVERFORD") {
