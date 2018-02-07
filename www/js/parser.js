@@ -13,9 +13,9 @@ class busTime {
     }
 
     getSource(source) {
-
+    	var trimmedSource = source.replace(/\s+/g, " ").trim();
 		for (var valid_source in this.sources) {
-		    if (this.sources[valid_source].has(source) ) {
+		    if (this.sources[valid_source].has(trimmedSource) ) {
 			return valid_source;
 		    }
 		}
@@ -60,61 +60,32 @@ class busTime {
 		    var tables = arrayify(parsedHTML.body.getElementsByTagName("table"));
 		    var parsed = tables.map(parseTrInTable)
 		    var timeDictionary = {};
+	    	var HaverfordTimes = [];
+	    	var BrynMawrTimes = [];
 		    for (var dayOfWeek in parsed){
-		    	var dayAsString;
-		    	switch (dayOfWeek){
-		    		case 0:
-		    			dayAsString = "Monday";
-		    			break;
-	    			case 1:
-		    			dayAsString = "Tuesday";
-		    			break;
-		    		case 2:
-		    			dayAsString = "Wednesday";
-		    			break;
-		    		case 1:
-		    			dayAsString = "Thursday";
-		    			break;
-		    		case 1:
-		    			dayAsString = "Friday";
-		    			break;
-		    		case 1:
-		    			dayAsString = "Saturday Daytime";
-		    			break;
-		    		case 1:
-		    			dayAsString = "Saturday Night";
-		    			break;
-		    		case 1:
-		    			dayAsString = "Sunday";
-		    			break;
-		    	}
-
-		    	var day = parsed[dayOfWeek][0][0].innerText;
 		    	var HaverfordColumn;
 		    	var BrynMawrColumn;
-		    	var HaverfordTimes = [];
-		    	var BrynMawrTimes = [];
 		    	for(var column in parsed[dayOfWeek][0][1]) {
-		    		var source = this.getSource(parsed[dayOfWeek][0][1].innerText);
-		    		if(source == Haverford){
+		    		var source = this.getSource(parsed[dayOfWeek][0][1][column].innerText);
+		    		if(source == "Haverford"){
 		    			HaverfordColumn = column;
-		    			Haverford = source;
 		    		}
-		    		else if(source == Brynmawr){
+		    		else if(source == "Brynmawr"){
 		    			BrynMawrColumn = column;
-		    			BrynMawr = source;
 		    		}
 		    	}
 		    	var dayTimes = parsed[dayOfWeek][1];
 		    	for (var row in dayTimes){
-		    		var HaverfordTime = dayTimes[row][HaverfordColumn];
-		    		var BrynMawrTime = dayTimes[row][BrynMawrColumn];
+		    		var HaverfordTime = String(dayTimes[row][HaverfordColumn].innerText.match((/([0-9]|[0-9][0-9]):[0-9][0-9]/g)));
+		    		var BrynMawrTime = String(dayTimes[row][BrynMawrColumn].innerText.match((/([0-9]|[0-9][0-9]):[0-9][0-9]/g)));
 		    		HaverfordTimes.push(HaverfordTime);
 		    		BrynMawrTimes.push(BrynMawrTime);
 		    	}
 		    }
-		    return parsed;
-		}
+		    timeDictionary["Haverford"] = HaverfordTimes;
+		    timeDictionary["BrynMawr"] = BrynMawrTimes;
+		    return timeDictionary;
+		};
 
 		return new Promise(function(fulfill, reject) {
 
@@ -128,7 +99,7 @@ class busTime {
 			    // for parsing info
 
 			    // Look at https://gist.github.com/WickyNilliams/9252235
-			    var scraped = scrapePage(response);
+			    var scraped = scrapePage.call(this, response);
 			    fulfill(scraped);
 
 			}.bind(this));
