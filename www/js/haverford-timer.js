@@ -19,8 +19,20 @@ var updateClock = function() {
     var distance2;
     var nextBuses = bus.getNextBuses("Haverford",2);
     nextBuses.then(function(dates){
-      distance1 = dates[0] - totalSeconds;
-      distance2 = dates[1] - totalSeconds;
+      if(dates[0]<totalSeconds){
+        var timeUntilStartOfWeek = secondsInWeek - totalSeconds;
+        distance1 = timeUntilStartOfWeek + dates[0];
+      }
+      else{
+        distance1 = dates[0] - totalSeconds;
+      }
+      if(dates[1]<totalSeconds){
+        var timeUntilStartOfWeek = secondsInWeek - totalSeconds;
+        distance2 = timeUntilStartOfWeek + dates[1];
+      }
+      else{
+        distance2 = dates[1] - totalSeconds;
+      }
       $("#main-clock").html(formatCountdown(distance1*1000));
       $("#small-clock").html(formatCountdown(distance2*1000));
     })
@@ -30,8 +42,20 @@ var updateClock = function() {
     var distance2;
     var nextBuses = bus.getNextBuses("BrynMawr",2);
     nextBuses.then(function(dates){
-      distance1 = dates[0] - totalSeconds;
-      distance2 = dates[1] - totalSeconds;
+      if(dates[0]<totalSeconds){
+        var timeUntilStartOfWeek = secondsInWeek - totalSeconds;
+        distance1 = timeUntilStartOfWeek + dates[0];
+      }
+      else{
+        distance1 = dates[0] - totalSeconds;
+      }
+      if(dates[1]<totalSeconds){
+        var timeUntilStartOfWeek = secondsInWeek - totalSeconds;
+        distance2 = timeUntilStartOfWeek + dates[1];
+      }
+      else{
+        distance2 = dates[1] - totalSeconds;
+      }
       $("#main-clock").html(formatCountdown(distance1*1000));
       $("#small-clock").html(formatCountdown(distance2*1000));
     })
