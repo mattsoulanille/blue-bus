@@ -83,13 +83,13 @@ var formatCountdown = function(distance) {
   var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
   var seconds = Math.floor((distance % (1000 * 60)) / 1000);
   if(hours == 0){
-    return ('0' + minutes).slice(-2) + "m " + ('0' + seconds).slice(-2) + "s "
+    if(minutes == 0){
+      return str(seconds);
+    }
+    return minutes + "m " + ('0' + seconds).slice(-2) + "s"
   }
-  if(minutes == 0){
-    ('0' + seconds).slice(-2) + "s ";
-  }
-  return ('0' + hours).slice(-2) + "h "
-        + ('0' + minutes).slice(-2) + "m " + ('0' + seconds).slice(-2) + "s ";
+  return hours + "h "
+        + minutes + "m " + ('0' + seconds).slice(-2) + "s";
 }
 
 
