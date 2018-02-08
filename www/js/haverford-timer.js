@@ -84,7 +84,7 @@ var formatCountdown = function(distance) {
   var seconds = Math.floor((distance % (1000 * 60)) / 1000);
   if(hours == 0){
     if(minutes == 0){
-      return str(seconds);
+      return seconds +"s";
     }
     return minutes + "m " + ('0' + seconds).slice(-2) + "s"
   }
