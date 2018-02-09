@@ -91,7 +91,7 @@ var formatCountdown = function(distance) {
   if(minutes == 0){
     ('0' + seconds).slice(-2) + "s ";
   }
-  return hours + "h "
+  return ('0' + hours).slice(-2) + "h "
         + ('0' + minutes).slice(-2) + "m " + ('0' + seconds).slice(-2) + "s ";
 }
 
