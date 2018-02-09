@@ -18,9 +18,6 @@
  */
 
 // Debug
-var bus = new busTime();
-var times;
-bus.getTimes().then(function(a) {times = a;});
 //from sitepoint.com/ ..
 
 // we need 2 deadlines because schedules are diff

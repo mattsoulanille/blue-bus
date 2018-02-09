@@ -1,10 +1,17 @@
 // Got code from https://www.w3schools.com/howto/howto_js_countdown.asp
 // Set the date we're counting down to
 // Update the count down every 1 second
+var bus = new nextBusTime();
 var updateClock = function() {
-
   // Get todays date and time
-  var now = new Date().getTime();
+  var now = new Date();
+  var day = now.getDay();
+  day = ((day-1)+7)%7;
+  var hours = now.getHours();
+  var minutes = now.getMinutes();
+  var seconds = now.getSeconds();
+  var totalSeconds = day*(24*60*60) + hours*(60*60) + minutes*60 + seconds;
+  var secondsInWeek = 7*24*60*60;
   //alert(MAINVIEW);
   // Find the distance between now an the count down date
   if (MAINVIEW == "HAVERFORD") {
@@ -12,21 +19,45 @@ var updateClock = function() {
     var distance2;
     var nextBuses = bus.getNextBuses("Haverford",2);
     nextBuses.then(function(dates){
-      distance1 = dates[0].getTime() - now;
-      distance2 = dates[1].getTime() - now;
-      $("#main-clock").html(formatCountdown(distance1));
-      $("#small-clock").html(formatCountdown(distance2));
+      if(dates[0]<totalSeconds){
+        var timeUntilStartOfWeek = secondsInWeek - totalSeconds;
+        distance1 = timeUntilStartOfWeek + dates[0];
+      }
+      else{
+        distance1 = dates[0] - totalSeconds;
+      }
+      if(dates[1]<totalSeconds){
+        var timeUntilStartOfWeek = secondsInWeek - totalSeconds;
+        distance2 = timeUntilStartOfWeek + dates[1];
+      }
+      else{
+        distance2 = dates[1] - totalSeconds;
+      }
+      $("#main-clock").html(formatCountdown(distance1*1000));
+      $("#small-clock").html(formatCountdown(distance2*1000));
     })
   }
   else {
     var distance1;
     var distance2;
-    var nextBuses = bus.getNextBuses("Brynmawr",2);
+    var nextBuses = bus.getNextBuses("BrynMawr",2);
     nextBuses.then(function(dates){
-      distance1 = dates[0].getTime() - now;
-      distance2 = dates[1].getTime() - now;
-      $("#main-clock").html(formatCountdown(distance1));
-      $("#small-clock").html(formatCountdown(distance2));
+      if(dates[0]<totalSeconds){
+        var timeUntilStartOfWeek = secondsInWeek - totalSeconds;
+        distance1 = timeUntilStartOfWeek + dates[0];
+      }
+      else{
+        distance1 = dates[0] - totalSeconds;
+      }
+      if(dates[1]<totalSeconds){
+        var timeUntilStartOfWeek = secondsInWeek - totalSeconds;
+        distance2 = timeUntilStartOfWeek + dates[1];
+      }
+      else{
+        distance2 = dates[1] - totalSeconds;
+      }
+      $("#main-clock").html(formatCountdown(distance1*1000));
+      $("#small-clock").html(formatCountdown(distance2*1000));
     })
   }
 
@@ -52,7 +83,10 @@ var formatCountdown = function(distance) {
   var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
   var seconds = Math.floor((distance % (1000 * 60)) / 1000);
   if(hours == 0){
-    return ('0' + minutes).slice(-2) + "m " + ('0' + seconds).slice(-2) + "s "
+    if(minutes == 0){
+      return seconds +"s";
+    }
+    return minutes + "m " + ('0' + seconds).slice(-2) + "s"
   }
   if(minutes == 0){
     ('0' + seconds).slice(-2) + "s ";

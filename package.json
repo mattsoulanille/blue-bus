@@ -6,14 +6,11 @@
   },
   "displayName": "Hackathon Blue Bus Reminder",
   "dependencies": {
-    "cordova-android": "^7.0.0",
     "cordova-browser": "^5.0.3",
-    "cordova-ios": "4.5.4",
-    "cordova-plugin-badge": "^0.8.7",
     "cordova-plugin-console": "^1.0.7",
-    "cordova-plugin-device": "^2.0.1",
     "cordova-plugin-dialogs": "^1.2.1",
     "cordova-plugin-local-notifications": "^1.0.0",
+    "cordova-plugin-notification": "^1.3.7",
     "cordova-plugin-statusbar": "^2.1.3",
     "cordova-plugin-whitelist": "^1.2.2",
     "phonegap-plugin-push": "^1.8.4"
