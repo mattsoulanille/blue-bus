@@ -13,7 +13,8 @@
         "cordova-plugin-notification": "^1.3.7",
         "cordova-plugin-statusbar": "^2.1.3",
         "cordova-plugin-whitelist": "^1.2.2",
-        "phonegap-plugin-push": "^1.8.4"
+        "phonegap-plugin-push": "^1.8.4",
+        "cordova-plugin-local-notification": "~0.9.0-beta.2"
     },
     "cordova": {
         "plugins": {
@@ -23,7 +24,8 @@
             },
             "cordova-plugin-console": {},
             "cordova-plugin-dialogs": {},
-            "cordova-plugin-whitelist": {}
+            "cordova-plugin-whitelist": {},
+            "cordova-plugin-local-notification": {}
         },
         "platforms": [
             "browser"

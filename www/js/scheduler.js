@@ -1,21 +1,19 @@
 $(document).ready(function(event){
 
   $('#HaverfordButton').click(function(){
-    var sound = device.platform == 'Android' ? 'file://sound.mp3' : 'file://beep.caf';
-
+    console.log("A button was clicked");
+    var d = new Date();
+    d.addSeconds(20); 
     cordova.plugins.notification.local.schedule({
-
-        alert(Trying to schedule something);
-        id: 1,
-        text: 'Scheduled every minute',
-        every: 'second',
-        sound: sound,
-        icon: 'res://icon',
-        smallIcon: 'res://ic_popup_sync'
-    });  });
+                    id: 1999,
+                    title: 'Sample',
+                    message: 'checking',
+                    date: d
+    });
+  });
 
 
   $('#BrynMawrButton').click(function(){
-    alert("Just testing to make sure alerts still work");
+    alert("Why is this not showing?");
   });
 });
