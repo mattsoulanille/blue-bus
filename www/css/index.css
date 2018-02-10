@@ -20,6 +20,10 @@
     -webkit-tap-highlight-color: rgba(0,0,0,0); /* make transparent link selection, adjust last value opacity 0 to 1.0 */
 }
 
+::-webkit-scrollbar {
+    display: none;
+}
+
 body {
     -webkit-touch-callout: none;                /* prevent callout to copy image, etc when tap to hold */
     -webkit-user-select: none;                  /* prevent copy paste, to allow, change 'none' to 'text' */
@@ -50,6 +54,11 @@ body {
     bottom: 0;
     width: 100%;
 
+}
+
+.whitespace {
+  position: relative;
+  height: 240px;
 }
 
 /* .HaverfordButton {
@@ -177,7 +186,8 @@ h1 {
 }
 
 .header {
-    position:block;
+    position: fixed;
+    z-index: 1;
     background:white;
     width:100%;
     text-align: center;
@@ -255,7 +265,7 @@ h1 {
     font-family: 'Open Sans', sans-serif;
 }
 
-.clock:active {
+.time:active {
   opacity: 0.7;
   transition: 70ms;
 }
@@ -293,7 +303,6 @@ h1 {
     transition: background 80ms linear;
     -webkit-transition: background 80ms linear;
     -moz-transition: background 80ms linear;
-
 }
 
 #small-clock {

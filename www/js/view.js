@@ -10,8 +10,7 @@ function setView(){
     $('#currentViewDesc').removeClass('bmc-desc');
     $('#currentViewDesc').addClass('hc-desc');
 
-    $('#main-clock').css({'background': '#A60000'});
-    $('#small-clock').css({'background': '#A60000'});
+    $('.time').css({'background': '#A60000'});
 
     $('#BrynMawrButton').css({'transform':'', 'opacity':''})
     $('#HaverfordButton').css({'transform':'scale(1)', 'opacity':'1'})
@@ -25,8 +24,7 @@ function setView(){
     $('#currentViewDesc').removeClass('hc-desc');
     $('#currentViewDesc').addClass('bmc-desc');
 
-    $('#main-clock').css({'background': '#03335F'});
-    $('#small-clock').css({'background': '#03335F'});
+    $('.time').css({'background': '#03335F'});
 
     $('#HaverfordButton').css({'transform':'', 'opacity':''})
     $('#BrynMawrButton').css({'transform':'scale(1)', 'opacity':'1'})
