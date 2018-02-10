@@ -12,4 +12,9 @@ $(document).ready(function(event){
     MAINVIEW = "BRYNMAWR";
     setView();
   });
+
+
+  $('.clock').click(function(){
+    alert("working");
+  });
 });
