@@ -8,12 +8,14 @@ $(document).ready(function(event){
                     id: 1999,
                     title: 'Sample',
                     message: 'checking',
-                    date: d
     });
   });
 
 
   $('#BrynMawrButton').click(function(){
-    alert("Why is this not showing?");
   });
+
+  document.addEventListener("deviceready", function(){
+      alert("123");
+ },true);
 });
