@@ -5,6 +5,36 @@ class nextBusTime {
 		this.busTimesInSeconds = null;
 	}
 
+	toDateFormat(num_seconds){
+		var secondsInMinute = 60;
+		var secondsInHour = 60*secondsInMinute;
+		var secondsinDay = 24*secondsInHour;
+		var day = num_seconds/secondsinDay;
+		num_seconds = num_seconds%secondsinDay;
+		var hour = num_seconds/secondsInHour;
+		num_seconds = num_seconds%secondsInHour;
+		var minute = num_seconds/secondsInMinute;
+		var dayAsString = "";
+		switch(day){
+			case 0: dayAsString = "Mon";
+			case 1: dayAsString = "Tue";
+			case 2: dayAsString = "Wed";
+			case 3: dayAsString = "Thu";
+			case 4: dayAsString = "Fri";
+			case 5: dayAsString = "Sat";
+			case 6: dayAsString = "Sun";
+		}
+		if(hour>=12){
+			return dayAsString + " " + hour + ":" + minute + " PM";
+		}
+		else{
+			if(hour==0){
+				hour = 12;
+			}
+			return dayAsString + " " + hour + ":" + minute + " AM";
+		}
+	}
+
 	async getNextBusIndex(school){
 		if(this.busTimesInSeconds == null){
 			await this.getBusTimeInSeconds();
