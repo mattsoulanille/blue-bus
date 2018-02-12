@@ -1,11 +1,19 @@
-$(document).ready(function(event){
+var alertTime;
+var setAlert = function(){
+	var now = new Date();
+	alertTime = now;
+	alertTime.setSeconds(now.getSeconds()+5);
+}
 
-  $('#HaverfordButton').click(function(){
-    console.log("A button was clicked");
-  });
+var alertAtTime = function(){
+	var now = new Date();
+	var distance = alertTime.getSeconds()-now.getSeconds();
+	console.log(distance);
+	if(distance==0){
+		alert("Time is up");
+		setAlert();
+	}
+}
 
-
-  $('#BrynMawrButton').click(function(){
-  });
-
-});
+setAlert();
+setInterval(alertAtTime, 1000);
