@@ -305,7 +305,7 @@ h1 {
     -moz-transition: background 80ms linear;
 }
 
-#small-clock {
+.small-clock {
     position: relative;
     text-align: center;
     transform: scale(.8);

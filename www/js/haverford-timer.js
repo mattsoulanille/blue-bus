@@ -17,8 +17,18 @@ var updateClock = function() {
   if (MAINVIEW == "HAVERFORD") {
     var distance1;
     var distance2;
-    var nextBuses = bus.getNextBuses("Haverford",2);
+    var nextBuses = bus.getNextBuses("Haverford",2 + NUM_CLOCKS);
     nextBuses.then(function(dates){
+      for (var i = 0; i < NUM_CLOCKS; i++) {
+        if(dates[i+2]<totalSeconds){
+          var timeUntilStartOfWeek = secondsInWeek - totalSeconds;
+          distance = timeUntilStartOfWeek + dates[i+2];
+        }
+        else{
+          distance = dates[i+2] - totalSeconds;
+        }
+        $("#small-clock" + i).html(formatCountdown(distance*1000));
+      }
       if(dates[0]<totalSeconds){
         var timeUntilStartOfWeek = secondsInWeek - totalSeconds;
         distance1 = timeUntilStartOfWeek + dates[0];
@@ -40,8 +50,18 @@ var updateClock = function() {
   else {
     var distance1;
     var distance2;
-    var nextBuses = bus.getNextBuses("BrynMawr",2);
+    var nextBuses = bus.getNextBuses("BrynMawr",2 + NUM_CLOCKS);
     nextBuses.then(function(dates){
+      for (var i = 0; i < NUM_CLOCKS; i++) {
+        if(dates[i+2]<totalSeconds){
+          var timeUntilStartOfWeek = secondsInWeek - totalSeconds;
+          distance = timeUntilStartOfWeek + dates[i+2];
+        }
+        else{
+          distance = dates[i+2] - totalSeconds;
+        }
+        $("#small-clock" + i).html(formatCountdown(distance*1000));
+      }
       if(dates[0]<totalSeconds){
         var timeUntilStartOfWeek = secondsInWeek - totalSeconds;
         distance1 = timeUntilStartOfWeek + dates[0];
