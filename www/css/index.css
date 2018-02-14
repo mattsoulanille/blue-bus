@@ -281,7 +281,7 @@ h1 {
     padding-bottom: 5px;
 }
 
-#small-clock-desc {
+.small-clock-desc {
     position: relative;
     text-align: center;
     background: white;

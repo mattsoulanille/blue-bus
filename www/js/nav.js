@@ -59,7 +59,7 @@ updateClocksCSS = function() {
 setClocks = function() {
   for (var i=0; i < NUM_CLOCKS; i++) {
     $("#times").append("<br><br>");
-    $("#times").append('<div class="clock"><div id="small-clock-desc">Next bus is in:</div><div id="small-clock' + i + '" class="small-clock">this is a small clock</div></div>');
+    $("#times").append('<div class="clock"><div id="small-clock-desc'+i+'" class="small-clock-desc">Next bus is in:</div><div id="small-clock'+i+'" class="small-clock">this is a small clock</div></div>');
   }
 }
 
