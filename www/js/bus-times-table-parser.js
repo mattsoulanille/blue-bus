@@ -25,13 +25,13 @@ class nextBusTime {
 			case 6: dayAsString = "Sun";
 		}
 		if(hour>=12){
-			return dayAsString + " " + hour + ":" + minute + " PM";
+			return dayAsString + " " + hour + ":" + ('0' + minute).slice(-2) + " PM";
 		}
 		else{
 			if(hour==0){
 				hour = 12;
 			}
-			return dayAsString + " " + hour + ":" + minute + " AM";
+			return dayAsString + " " + hour + ":" + ('0' + minute).slice(-2) + " AM";
 		}
 	}
 
