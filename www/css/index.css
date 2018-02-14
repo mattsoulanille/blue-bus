@@ -56,9 +56,14 @@ body {
 
 }
 
-.whitespace {
+.upperWhitespace {
   position: relative;
   height: 240px;
+}
+
+.lowerWhitespace {
+  position: relative;
+  height: 160px;
 }
 
 /* .HaverfordButton {

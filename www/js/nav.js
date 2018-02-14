@@ -17,9 +17,9 @@ $(document).ready(function(event) {
   });
 
 
-  $('.time').click(function() {
-    $(this).html(bus.toDateFormat(100000));
-  });
+  // $('.time').click(function() {
+  //   $(this).html(bus.toDateFormat(100000));
+  // });
 
 
   // Handles clock animations during scrolling
@@ -38,8 +38,8 @@ updateClocksCSS = function() {
     var pos1 = $("#main-clock").offset().top;
     var pos2 = $(".small-clock").offset().top;
     var dist0 = $(this).offset().top - $(document).scrollTop();
-    var dist1 = $(this).offset().top - $(document).scrollTop() - pos1;
-    var dist2 = $(this).offset().top - $(document).scrollTop() - pos2;
+    var dist1 = $(this).offset().top - $(document).scrollTop() - pos2;
+    var dist2 = $(this).offset().top - $(document).scrollTop() - pos2 - 37;
 
     // Makes the clocks invisible once they go under the top banner so that they don't poke out again on the other side
     if (dist0 < 50) {
