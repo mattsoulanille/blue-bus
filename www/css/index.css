@@ -270,10 +270,10 @@ h1 {
     font-family: 'Open Sans', sans-serif;
 }
 
-.time:active {
+/* .time:active {
   opacity: 0.7;
   transition: 70ms;
-}
+} */
 
 #main-clock-desc {
     position: relative;
