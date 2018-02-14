@@ -58,7 +58,7 @@
       </div>
 
     <div class="whitespace"></div>
-    
+
     <div id="times">
       <div class="clock">
         <div id="main-clock-desc"> Bus leaves in:</div>
@@ -66,7 +66,7 @@
       </div>
       <div class="clock">
         <div id="small-clock-desc">Next bus is in:</div>
-        <div id="small-clock" class="time">this is a small clock</div>
+        <div id="small-clock" class="small-clock">this is a small clock</div>
       </div>
     </div>
 
@@ -81,8 +81,9 @@
     <script type="text/javascript" src="cordova.js"></script>
     <script type="text/javascript" src="js/index.js"></script>
     <script type="text/javascript">
-        app.initialize();
         var MAINVIEW = "HAVERFORD";
+        var NUM_CLOCKS = 7;
+        app.initialize();
     </script>
     <script type="text/javascript" src="js/view.js"></script>
     <script type="text/javascript" src="js/nav.js"></script>
