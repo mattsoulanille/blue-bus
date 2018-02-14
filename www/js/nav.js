@@ -28,7 +28,7 @@ $(document).ready(function(event) {
   });
 
   $(window).scrollStopped(function() {
-    alert("Scrolling has stopped!");
+    //alert("Scrolling has stopped!");
   })
 });
 
