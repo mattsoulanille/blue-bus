@@ -15,51 +15,45 @@ var updateClock = function() {
   //alert(MAINVIEW);
   // Find the distance between now an the count down date
   if (MAINVIEW == "HAVERFORD") {
-    var distance1;
-    var distance2;
-    var nextBuses = bus.getNextBuses("Haverford",2);
-    nextBuses.then(function(dates){
-      if(dates[0]<totalSeconds){
-        var timeUntilStartOfWeek = secondsInWeek - totalSeconds;
-        distance1 = timeUntilStartOfWeek + dates[0];
-      }
-      else{
-        distance1 = dates[0] - totalSeconds;
-      }
-      if(dates[1]<totalSeconds){
-        var timeUntilStartOfWeek = secondsInWeek - totalSeconds;
-        distance2 = timeUntilStartOfWeek + dates[1];
-      }
-      else{
-        distance2 = dates[1] - totalSeconds;
-      }
-      $("#main-clock").html(formatCountdown(distance1*1000));
-      $("#small-clock").html(formatCountdown(distance2*1000));
-    })
+    var nextBuses = bus.getNextBuses("Haverford",2 + NUM_CLOCKS);
   }
   else {
-    var distance1;
-    var distance2;
-    var nextBuses = bus.getNextBuses("BrynMawr",2);
-    nextBuses.then(function(dates){
-      if(dates[0]<totalSeconds){
-        var timeUntilStartOfWeek = secondsInWeek - totalSeconds;
-        distance1 = timeUntilStartOfWeek + dates[0];
-      }
-      else{
-        distance1 = dates[0] - totalSeconds;
-      }
-      if(dates[1]<totalSeconds){
-        var timeUntilStartOfWeek = secondsInWeek - totalSeconds;
-        distance2 = timeUntilStartOfWeek + dates[1];
-      }
-      else{
-        distance2 = dates[1] - totalSeconds;
-      }
-      $("#main-clock").html(formatCountdown(distance1*1000));
-      $("#small-clock").html(formatCountdown(distance2*1000));
-    })
+    var nextBuses = bus.getNextBuses("BrynMawr",2 + NUM_CLOCKS);
   }
+
+  var distance1;
+  var distance2;
+  var distance;
+  nextBuses.then(function(dates){
+    for (var i = 0; i < NUM_CLOCKS; i++) {
+      if(dates[i+2]<totalSeconds){
+        var timeUntilStartOfWeek = secondsInWeek - totalSeconds;
+        distance = timeUntilStartOfWeek + dates[i+2];
+      }
+      else{
+        distance = dates[i+2] - totalSeconds;
+      }
+      $("#small-clock" + i).html(formatCountdown(distance*1000));
+      $("#small-clock-desc" + i).html(bus.toDateFormat(dates[i+2]) + " bus is in:");
+    }
+    if(dates[0]<totalSeconds){
+      var timeUntilStartOfWeek = secondsInWeek - totalSeconds;
+      distance1 = timeUntilStartOfWeek + dates[0];
+    }
+    else{
+      distance1 = dates[0] - totalSeconds;
+    }
+    if(dates[1]<totalSeconds){
+      var timeUntilStartOfWeek = secondsInWeek - totalSeconds;
+      distance2 = timeUntilStartOfWeek + dates[1];
+    }
+    else{
+      distance2 = dates[1] - totalSeconds;
+    }
+    $("#main-clock").html(formatCountdown(distance1*1000));
+    $("#small-clock").html(formatCountdown(distance2*1000));
+  });
+
 
   // Display the result in the element with id="demo"
   $("#small-clock").html(formatCountdown(distance2));

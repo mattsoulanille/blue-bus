@@ -5,15 +5,21 @@ var setAlert = function(){
 	alertTime.setSeconds(now.getSeconds()+5);
 }
 
-var alertAtTime = function(){
-	var now = new Date();
-	var distance = alertTime.getSeconds()-now.getSeconds();
-	console.log(distance);
-	if(distance==0){
-		alert("Time is up");
-		setAlert();
-	}
-}
+  $('#HaverfordButton').click(function(){
+    console.log("A button was clicked");
+    var d = new Date();
+    d.addSeconds(20);
+    cordova.plugins.notification.local.schedule({
+                    id: 1999,
+                    title: 'Sample',
+                    message: 'checking',
+    });
+  });
 
-setAlert();
-setInterval(alertAtTime, 1000);
+
+  $('#BrynMawrButton').click(function(){
+  });
+
+  document.addEventListener("deviceready", function(){
+ },true);
+});

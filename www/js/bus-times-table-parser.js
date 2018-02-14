@@ -8,37 +8,37 @@ class nextBusTime {
 	toDateFormat(num_seconds){
 		var secondsInMinute = 60;
 		var secondsInHour = 60*secondsInMinute;
-		var secondsinDay = 24*secondsInHour;
-		var day = Math.floor(num_seconds/secondsinDay);
-		num_seconds = num_seconds%secondsinDay;
+		var secondsInDay = 24*secondsInHour;
+		var secondsInWeek = 7 * secondsInDay;
+		num_seconds = num_seconds%secondsInWeek;
+		var day = Math.floor(num_seconds/secondsInDay);
+		num_seconds = num_seconds%secondsInDay;
 		var hour = Math.floor(num_seconds/secondsInHour);
 		num_seconds = num_seconds%secondsInHour;
 		var minute = Math.floor(num_seconds/secondsInMinute);
 		var dayAsString = "";
 		switch(day){
 			case 0: dayAsString = "Mon";
-			break;
 			case 1: dayAsString = "Tue";
-			break;
 			case 2: dayAsString = "Wed";
-			break;
 			case 3: dayAsString = "Thu";
-			break;
 			case 4: dayAsString = "Fri";
-			break;
 			case 5: dayAsString = "Sat";
-			break;
 			case 6: dayAsString = "Sun";
 		}
+		var AmPm = "AM";
 		if(hour>=12){
-			return dayAsString + " " + hour + ":" + ('0' + minute).slice(-2) + " PM";
+			AmPm = "PM";
+		}
+
+		if(hour==0 || hour==12){
+			hour = 12;
 		}
 		else{
-			if(hour==0){
-				hour = 12;
-			}
-			return dayAsString + " " + hour + ":" + ('0' + minute).slice(-2) + " AM";
+			hour = hour % 12;
 		}
+
+		return /*dayAsString + " " +*/ hour + ":" + ('0' + minute).slice(-2) + " " + AmPm;
 	}
 
 	async getNextBusIndex(school){
@@ -137,4 +137,3 @@ class nextBusTime {
 	}
 
 }
-
