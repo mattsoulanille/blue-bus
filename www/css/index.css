@@ -58,12 +58,12 @@ body {
 
 .upperWhitespace {
   position: relative;
-  height: 240px;
+  height: 35vh;
 }
 
 .lowerWhitespace {
   position: relative;
-  height: 160px;
+  height: 25vh;
 }
 
 /* .HaverfordButton {
