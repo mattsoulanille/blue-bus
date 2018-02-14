@@ -9,11 +9,11 @@ class nextBusTime {
 		var secondsInMinute = 60;
 		var secondsInHour = 60*secondsInMinute;
 		var secondsinDay = 24*secondsInHour;
-		var day = num_seconds/secondsinDay;
+		var day = Math.floor(num_seconds/secondsinDay);
 		num_seconds = num_seconds%secondsinDay;
-		var hour = num_seconds/secondsInHour;
+		var hour = Math.floor(num_seconds/secondsInHour);
 		num_seconds = num_seconds%secondsInHour;
-		var minute = num_seconds/secondsInMinute;
+		var minute = Math.floor(num_seconds/secondsInMinute);
 		var dayAsString = "";
 		switch(day){
 			case 0: dayAsString = "Mon";
