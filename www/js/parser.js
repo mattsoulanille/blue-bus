@@ -58,7 +58,7 @@ class busTime {
 		    var parser = new DOMParser();
 		    var parsedHTML = parser.parseFromString(text, "text/html");
 		    var tables = arrayify(parsedHTML.body.getElementsByTagName("table"));
-		    var parsed = tables.map(parseTrInTable)
+		    var parsed = tables.map(parseTrInTable);
 		    var timeDictionary = {};
 	    	var HaverfordTimes = [];
 	    	var BrynMawrTimes = [];
@@ -76,10 +76,16 @@ class busTime {
 		    	}
 		    	var dayTimes = parsed[dayOfWeek][1];
 		    	for (var row in dayTimes){
-		    		var HaverfordTime = String(dayTimes[row][HaverfordColumn].innerText.match((/([0-9]|[0-9][0-9]):[0-9][0-9]/g)));
-		    		var BrynMawrTime = String(dayTimes[row][BrynMawrColumn].innerText.match((/([0-9]|[0-9][0-9]):[0-9][0-9]/g)));
-		    		HaverfordTimes.push(HaverfordTime);
-		    		BrynMawrTimes.push(BrynMawrTime);
+		    	    var HaverfordTime = dayTimes[row][HaverfordColumn].innerText.match((/([0-9]|[0-9][0-9]):[0-9][0-9]/g));
+		    	    var BrynMawrTime = dayTimes[row][BrynMawrColumn].innerText.match((/([0-9]|[0-9][0-9]):[0-9][0-9]/g));
+
+			    HaverfordTime.forEach(function(time) {
+       		    		HaverfordTimes.push(time);				
+			    });
+			    BrynMawrTime.forEach(function(time) {
+		    		BrynMawrTimes.push(time);
+			    });
+
 		    	}
 		    }
 		    timeDictionary["Haverford"] = HaverfordTimes;
