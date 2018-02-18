@@ -5,7 +5,9 @@ class nextBusTime {
 		this.busTimesInSeconds = null;
 	}
 
-	toDateFormat(num_seconds){
+	//Converts seconds relative to Monday at midnight into date format
+	toDateFormat(num_seconds, includeDay){
+		//Calculate equivalent Day, Hour, and Minute based on Seconds
 		var secondsInMinute = 60;
 		var secondsInHour = 60*secondsInMinute;
 		var secondsInDay = 24*secondsInHour;
@@ -26,6 +28,7 @@ class nextBusTime {
 			case 5: dayAsString = "Sat";
 			case 6: dayAsString = "Sun";
 		}
+		//Convert to non-military time
 		var AmPm = "AM";
 		if(hour>=12){
 			AmPm = "PM";
@@ -37,15 +40,20 @@ class nextBusTime {
 		else{
 			hour = hour % 12;
 		}
-
-		return /*dayAsString + " " +*/ hour + ":" + ('0' + minute).slice(-2) + " " + AmPm;
+		if(includeDay){
+			return dayAsString + " " + hour + ":" + ('0' + minute).slice(-2) + " " + AmPm;
+		}
+		return hour + ":" + ('0' + minute).slice(-2) + " " + AmPm
 	}
 
+	//Get next bus from a given school
 	async getNextBusIndex(school){
+		//wait to load data form website
 		if(this.busTimesInSeconds == null){
 			await this.getBusTimeInSeconds();
 		}
 		var times = this.busTimesInSeconds[school];
+		//calculate number of seconds since Monday 12 am to compare to array
 		var now = new Date();
 		var day = now.getDay();
 		day = ((day-1)+7)%7;
@@ -53,6 +61,9 @@ class nextBusTime {
 		var minutes = now.getMinutes();
 		var seconds = now.getSeconds();
 		var totalSeconds = day*(24*60*60) + hours*(60*60) + minutes*60 + seconds;
+		//brute force search for the next time
+		//Want the first one whose time in seconds since Monday 12 am is greater than current one
+		//Since otherwise the bus has already left
 		for(var i = 0; i < times.length;i++){
 			if(times[i]>totalSeconds){
 				return i;
@@ -63,6 +74,8 @@ class nextBusTime {
 		}
 	}
 
+	//use the singular version, and then once we have the first index
+	//Can simply increment index x times to get x+1 times all pushed into an array
 	async getNextBuses(school, num_buses){
 		var nextBusIndex = await this.getNextBusIndex(school);
 		var num_times = this.busTimesInSeconds[school].length;
@@ -75,6 +88,7 @@ class nextBusTime {
 	}
 
 	async getBusTimeInSeconds(){
+		//declare variables to figure out what time a bus is at
 		var timeDictionary = {};
 		var times = await this.bus.getTimes();
 		var BMCTimesInSeconds = [];
@@ -94,12 +108,15 @@ class nextBusTime {
 			//We know that all of the times are of form dd:dd
 			var BMCSplitTime = times["BrynMawr"][row].split(":");
 			var HCSplitTime = times["Haverford"][row].split(":");
+			//When hour mod 12 decreases, we know we need to switch AM to PM or vice versa
+			//Similarly, when we switch from PM to AM, we know we need to change the day
 			if((BMCSplitTime[0] % 12) < BMCprev_mod){
 				BMC_AM = BMC_AM + 1;
 				if(BMC_AM % 2 == 0){
 					BMC_day = BMC_day + 1;
 					if(BMC_day==7){
 						BMC_day = 0;
+						//For Monday morning listed under Sunday, need it at the beginning of the array
 						BMCseenSecondMonday = true;
 					}
 				}
@@ -107,6 +124,7 @@ class nextBusTime {
 			BMCprev_mod = BMCSplitTime[0] % 12;
 			var BMCTimeInSeconds = BMC_day*secondsInDay + ((Number(BMCSplitTime[0])%12) + (BMC_AM % 2)*12)*secondsInHour + Number(BMCSplitTime[1])*secondsInMinute;
 			if(BMCseenSecondMonday){
+				//If it's Monday, we need it at the beginning of the array, not the end
 				BMCTimesInSeconds.unshift(BMCTimeInSeconds);
 			}
 			else{

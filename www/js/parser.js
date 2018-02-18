@@ -5,6 +5,7 @@ class busTime {
     constructor() {
 		this.times = null;
 		this.days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
+		//Different ways the blue bus site says "Leave Bryn Mawr" or "Leave Haverford"
 		this.sources = {
 		    Brynmawr : new Set(["Leaves BMC", "Leave Bryn Mawr", "Bryn Mawr to Haverford"]),
 		    Haverford : new Set(["Leave Haverford", "Haverford to Bryn Mawr", "Leaves Stokes"])
@@ -12,6 +13,8 @@ class busTime {
 		this.busUrl = "http://www.brynmawr.edu/transportation/bico.shtml";
     }
 
+    //Figures out if the time is for Leaving Haverford or Bryn Mawr by comparing to the two
+    //sets above
     getSource(source) {
     	var trimmedSource = source.replace(/\s+/g, " ").trim();
 		for (var valid_source in this.sources) {
@@ -22,24 +25,30 @@ class busTime {
 		return null;
     }
 
+
+    //Returns a dictionary that maps to two arrays full of times the blue bus leaves each school
     getTimes() {
 
-
+    	//Turns html tables into arrays
 		// Adapted from https://gist.github.com/WickyNilliams/9252235
 		function arrayify(htmlTable) {
 		    return Array.prototype.slice.call(htmlTable);
 		}
 
+		//Figures out what is in the heading of a table
 		function parseThInTable(table){
 			var ths = arrayify(table.getElementsByTagName("th"));
 			return ths;
 		}
 
+		//parses data cell in a table
 		function parseTdInTable(table) {
 			var tds = arrayify(table.getElementsByTagName("td"));
 			return tds;
 		}
 
+		//Parses a row in a table and splits it up into data or header cells that can be parsed
+		//by the above functions
 		function parseTrInTable(table) {
 		    // Parses one table objecet
 		    var rows = arrayify(table.getElementsByTagName("tr"));
@@ -52,7 +61,7 @@ class busTime {
 		}
 
 
-
+		//The actual scraping of the page
 		function scrapePage(text) {
 
 		    var parser = new DOMParser();

@@ -34,8 +34,9 @@ var updateClock = function() {
         distance = dates[i+2] - totalSeconds;
       }
       $("#small-clock" + i).html(formatCountdown(distance*1000));
-      $("#small-clock-desc" + i).html(bus.toDateFormat(dates[i+2]) + " bus leaves in:");
+      $("#small-clock-desc" + i).html(bus.toDateFormat(dates[i+2], false) + " bus leaves in:");
     }
+    //check to see if we're at Sunday night and the next bus is Monday morning
     if(dates[0]<totalSeconds){
       var timeUntilStartOfWeek = secondsInWeek - totalSeconds;
       distance1 = timeUntilStartOfWeek + dates[0];
@@ -53,7 +54,7 @@ var updateClock = function() {
     $("#main-clock").html(formatCountdown(distance1*1000));
     $("#main-clock-desc").html("Bus leaves in:");
     $("#small-clock").html(formatCountdown(distance2*1000));
-    $("#small-clock-desc").html(bus.toDateFormat(dates[1]) + " bus leaves in:");
+    $("#small-clock-desc").html(bus.toDateFormat(dates[1], false) + " bus leaves in:");
   });
 
 
@@ -63,11 +64,9 @@ var updateClock = function() {
   // If the count down is finished, write some text
   if (distance1 < 0) {
     clearInterval(updateClock);
-    $("#main-clock").html("EXPIRED");
   }
   if (distance2 < 0) {
     clearInterval(updateClock);
-    $("#small-clock").html("EXPIRED");
   }
 }
 
@@ -78,6 +77,7 @@ var formatCountdown = function(distance) {
   var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
   var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
   var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+  //format the time into a nice string format
   if(hours == 0){
     if(minutes == 0){
       return seconds +"s";
