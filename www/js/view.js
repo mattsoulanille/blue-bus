@@ -15,6 +15,8 @@ function setView(){
 
     $('#BrynMawrButton').css({'transform':'', 'opacity':''})
     $('#HaverfordButton').css({'transform':'scale(1)', 'opacity':'1'})
+
+    //$('html').css({'overflow': 'hidden'});
   }
   else {
     $('#currentViewHeader').text('Bryn Mawr');
@@ -30,5 +32,7 @@ function setView(){
 
     $('#HaverfordButton').css({'transform':'', 'opacity':''})
     $('#BrynMawrButton').css({'transform':'scale(1)', 'opacity':'1'})
+
+    //$('html').css({'overflow': 'auto'});
   }
 }

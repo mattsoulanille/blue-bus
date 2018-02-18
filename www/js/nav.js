@@ -16,19 +16,32 @@ $(document).ready(function(event) {
     setView();
   });
 
-  // $('body').bind('touchmove', function(e) {
-  //   alert(e.originalEvent.touches[0].pageY);
-  // });
+
+  var touchX;
+  $('body').bind('touchstart', function(e) {
+    console.log("touchstarted");
+    touchX = e.originalEvent.touches[0].pageX
+  });
+
+  $('body').bind('touchmove', function(e) {
+    //console.log(e.originalEvent.touches[0].pageX);
+    if (touchX - e.originalEvent.touches[0].pageX > 50) {
+      console.log("Moved farther than 50 px");
+    }
+  });
 
 
   // Handles clock animations during scrolling
   $(window).scroll(function() {
     updateClocksCSS();
+    // if ($(document).scrollLeft() != 0) {
+    //   $(document).scrollLeft(0);
+    // }
   });
 
   $(window).scrollStopped(function() {
     //alert("Scrolling has stopped!");
-  })
+  });
 });
 
 
@@ -58,7 +71,7 @@ updateClocksCSS = function() {
 setClocks = function() {
   for (var i=0; i < NUM_CLOCKS; i++) {
     $("#times").append("<br><br>");
-    $("#times").append('<div class="clock"><div id="small-clock-desc'+i+'" class="small-clock-desc">Next bus is in:</div><div id="small-clock'+i+'" class="small-clock">this is a small clock</div></div>');
+    $("#times").append('<div class="clock"><div id="small-clock-desc'+i+'" class="small-clock-desc">Next bus is in:</div><div id="small-clock'+i+'" class="small-clock">Loading...</div></div>');
   }
 }
 

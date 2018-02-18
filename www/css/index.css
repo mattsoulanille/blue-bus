@@ -25,6 +25,7 @@
 }
 
 body {
+    overflow-x: hidden !important;
     -webkit-touch-callout: none;                /* prevent callout to copy image, etc when tap to hold */
     -webkit-user-select: none;                  /* prevent copy paste, to allow, change 'none' to 'text' */
     background-color:white;
@@ -34,7 +35,11 @@ body {
     height:100%;
     margin:0px;
     padding:0px;
-    width:100%;
+    width:200%;
+}
+
+#timerPage {
+  width: 50%;
 }
 
 /* Portrait layout (default) */
@@ -172,6 +177,7 @@ h1 {
     background-color:#4B946A;
     display:none;
 }
+
 
 @keyframes fade {
     from { opacity: 1.0; }
