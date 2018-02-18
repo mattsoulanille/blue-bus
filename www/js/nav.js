@@ -16,9 +16,8 @@ $(document).ready(function(event) {
     setView();
   });
 
-
-  // $('.time').click(function() {
-  //   $(this).html(bus.toDateFormat(100000));
+  // $('body').bind('touchmove', function(e) {
+  //   alert(e.originalEvent.touches[0].pageY);
   // });
 
 
