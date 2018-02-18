@@ -25,9 +25,14 @@ $(document).ready(function(event) {
 
   $('body').bind('touchmove', function(e) {
     //console.log(e.originalEvent.touches[0].pageX);
-    if (touchX - e.originalEvent.touches[0].pageX > 50) {
-      console.log("Moved farther than 50 px");
+    if (touchX - e.originalEvent.touches[0].pageX > 70) {
+      $('body').css({"overflow-x": "visible"});
     }
+  });
+
+  $('body').bind('touchend', function(e) {
+      $('body').animate({scrollLeft: "0px"}, 220);
+      $('body').css({"overflow-x":"hidden"});
   });
 
 

@@ -25,7 +25,7 @@
 }
 
 body {
-    overflow-x: hidden !important;
+    overflow-x: hidden;
     -webkit-touch-callout: none;                /* prevent callout to copy image, etc when tap to hold */
     -webkit-user-select: none;                  /* prevent copy paste, to allow, change 'none' to 'text' */
     background-color:white;
