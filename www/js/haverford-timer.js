@@ -34,7 +34,7 @@ var updateClock = function() {
         distance = dates[i+2] - totalSeconds;
       }
       $("#small-clock" + i).html(formatCountdown(distance*1000));
-      $("#small-clock-desc" + i).html(bus.toDateFormat(dates[i+2]) + " bus is in:");
+      $("#small-clock-desc" + i).html(bus.toDateFormat(dates[i+2]) + " bus leaves in:");
     }
     if(dates[0]<totalSeconds){
       var timeUntilStartOfWeek = secondsInWeek - totalSeconds;
@@ -51,7 +51,9 @@ var updateClock = function() {
       distance2 = dates[1] - totalSeconds;
     }
     $("#main-clock").html(formatCountdown(distance1*1000));
+    $("#main-clock-desc").html("Bus leaves in:");
     $("#small-clock").html(formatCountdown(distance2*1000));
+    $("#small-clock-desc").html(bus.toDateFormat(dates[1]) + " bus leaves in:");
   });
 
 
