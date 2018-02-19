@@ -107,7 +107,6 @@ class nextBusTime {
 		for (var row in times["BrynMawr"]){
 			//We know that all of the times are of form dd:dd
 			var BMCSplitTime = times["BrynMawr"][row].split(":");
-			var HCSplitTime = times["Haverford"][row].split(":");
 			//When hour mod 12 decreases, we know we need to switch AM to PM or vice versa
 			//Similarly, when we switch from PM to AM, we know we need to change the day
 			if((BMCSplitTime[0] % 12) < BMCprev_mod){
@@ -130,6 +129,12 @@ class nextBusTime {
 			else{
 				BMCTimesInSeconds.push(BMCTimeInSeconds);
 			}
+		}
+		for (var row in times["Haverford"]){
+			//We know that all of the times are of form dd:dd
+			var HCSplitTime = times["Haverford"][row].split(":");
+			//When hour mod 12 decreases, we know we need to switch AM to PM or vice versa
+			//Similarly, when we switch from PM to AM, we know we need to change the day
 			if((HCSplitTime[0] % 12) < HCprev_mod){
 				HC_AM = HC_AM + 1;
 				if(HC_AM % 2 == 0){
