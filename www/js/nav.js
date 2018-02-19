@@ -17,21 +17,28 @@ $(document).ready(function(event) {
   });
 
 
-  var touchX;
+  var firstPos;
+  var lastPos;
   $('body').bind('touchstart', function(e) {
-    console.log("touchstarted");
-    touchX = e.originalEvent.touches[0].pageX
+    firstPos = e.originalEvent.touches[0];
   });
 
   $('body').bind('touchmove', function(e) {
-    //console.log(e.originalEvent.touches[0].pageX);
-    if (touchX - e.originalEvent.touches[0].pageX > 70) {
+    var currentPos = e.originalEvent.touches[0];
+    if (Math.abs(firstPos.pageX - currentPos.pageX) > 70) {
       $('body').css({"overflow-x": "visible"});
     }
+    lastPos = currentPos;
   });
 
   $('body').bind('touchend', function(e) {
-      $('body').animate({scrollLeft: "0px"}, 220);
+      if ($(document).scrollLeft() > ($(document).width() / 4)) {
+        $('body').animate({scrollLeft: $(document).width() / 2 + "px"}, 220);
+      }
+      else {
+        $('body').animate({scrollLeft: "0px"}, 220);
+        // $('body').animate({scrollLeft: "0px", scrollTop: "0px"}, 400);
+      }
       $('body').css({"overflow-x":"hidden"});
   });
 

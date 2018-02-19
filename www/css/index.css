@@ -40,6 +40,14 @@ body {
 
 #timerPage {
   width: 50%;
+  float: left;
+}
+
+#tablePage {
+  width: 50%;
+  height: 100%;
+  float: left;
+  background-color: blue;
 }
 
 /* Portrait layout (default) */
