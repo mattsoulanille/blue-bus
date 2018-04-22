@@ -1,0 +1,341 @@
+/*
+ * Licensed to the Apache Software Foundation (ASF) under one
+ * or more contributor license agreements.  See the NOTICE file
+ * distributed with this work for additional information
+ * regarding copyright ownership.  The ASF licenses this file
+ * to you under the Apache License, Version 2.0 (the
+ * "License"); you may not use this file except in compliance
+ * with the License.  You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
+* {
+    -webkit-tap-highlight-color: rgba(0,0,0,0); /* make transparent link selection, adjust last value opacity 0 to 1.0 */
+}
+
+::-webkit-scrollbar {
+    display: none;
+}
+
+body {
+    overflow-x: hidden;
+    -webkit-touch-callout: none;                /* prevent callout to copy image, etc when tap to hold */
+    -webkit-user-select: none;                  /* prevent copy paste, to allow, change 'none' to 'text' */
+    background-color:white;
+    background-attachment:fixed;
+    font-family: 'Open Sans', sans-serif;
+    font-size:12px;
+    height:100%;
+    margin:0px;
+    padding:0px;
+    /*width:200%;*/
+}
+
+#timerPage {
+  width: 100%;
+  float: left;
+}
+
+#tablePage {
+  width: 50%;
+  height: 100%;
+  float: left;
+  background-color: blue;
+}
+
+/* Portrait layout (default) */
+.app {
+    position:relative;             /* position in the center of the screen */
+    left:50%;
+    top:50%;                   /* text area height */
+    width:225px;                   /* text area width */
+    text-align:center;
+    padding:180px 0px 0px 0px;     /* image height is 200px (bottom 20px are overlapped with text) */
+    margin:-115px 0px 0px -112px;  /* offset vertical: half of image height and text area height */
+                                   /* offset horizontal: half of text area width */
+}
+
+.navBar {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+
+}
+
+.upperWhitespace {
+  position: relative;
+  height: 35vh;
+}
+
+.lowerWhitespace {
+  position: relative;
+  height: 23vh;
+}
+
+/* .HaverfordButton {
+    margin: auto;
+    float: left;
+    width: 50%;
+    border-radius: 10px;
+    background: crimson;
+} */
+
+#HaverfordButton {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    margin: auto;
+    width: 50%;
+    float: left;
+    font-size: 20px;
+    font-family: sans-serif;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    background: #A60000;
+    text-align: center;
+    color: White;
+    transition: 80ms;
+    transform: scale(0.9);
+    opacity: 0.6;
+}
+
+#HaverfordButton:active {
+    transform: scale(0.95);
+    opacity: 0.9;
+    transition: 100ms;
+}
+
+#BrynMawrButton {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    margin: auto;
+    width: 50%;
+    float: left;
+    font-family: sans-serif;
+    font-size: 20px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    background: #03335F;
+    text-align: center;
+    color: White;
+    transition: 80ms;
+    transform: scale(0.9);
+    opacity: 0.6;
+}
+
+#BrynMawrButton:active {
+    transform: scale(0.95);
+    opacity: 0.9;
+    transition: 100ms;
+}
+
+.Haverford {
+    background-color: rebeccapurple;
+    text-align: center;
+    width: 50%;
+    font-size: 10px;
+    color: red;
+    padding: 0px;
+    height: 20%;
+}
+
+
+/* Landscape layout (with min-width) */
+@media screen and (min-aspect-ratio: 1/1) and (min-width:400px) {
+    .app {
+        background-position:left center;
+        padding:75px 0px 75px 170px;  /* padding-top + padding-bottom + text area = image height */
+        margin:-90px 0px 0px -198px;  /* offset vertical: half of image height */
+                                      /* offset horizontal: half of image width and text area width */
+    }
+}
+
+h1 {
+    font-size:24px;
+    font-weight:normal;
+    margin:0px;
+    overflow:visible;
+    padding:0px;
+    text-align:center;
+}
+
+.event {
+    border-radius:4px;
+    -webkit-border-radius:4px;
+    color:#FFFFFF;
+    font-size:12px;
+    margin:0px 30px;
+    padding:2px 0px;
+}
+
+.event.waiting {
+    background-color:#333333;
+    display:block;
+}
+
+.event.received {
+    background-color:#4B946A;
+    display:none;
+}
+
+
+@keyframes fade {
+    from { opacity: 1.0; }
+    50% { opacity: 0.4; }
+    to { opacity: 1.0; }
+}
+
+@-webkit-keyframes fade {
+    from { opacity: 1.0; }
+    50% { opacity: 0.4; }
+    to { opacity: 1.0; }
+}
+
+.blink {
+    animation:fade 3000ms infinite;
+    -webkit-animation:fade 3000ms infinite;
+}
+
+.header {
+    position: fixed;
+    top: 0px;
+    z-index: 1;
+    background:white;
+    width:100%;
+    text-align: center;
+    padding-bottom: 40px;
+    color: white;
+}
+
+.hc-header {
+    text-align: center;
+    background-color: #A60000;
+    padding-top: 20px;
+    padding-bottom: 22px;
+    font-size: 60px;
+    font-style:'Montserrat', sans-serif;
+    font-style: bold;
+    font-weight: 900;
+    transition: background 80ms linear;
+    -webkit-transition: background 80ms linear;
+    -moz-transition: background 80ms linear;
+}
+
+.bmc-header {
+    text-align: center;
+    background-color: #03335F;
+    padding-top: 20px;
+    padding-bottom: 22px;
+    font-size: 60px;
+    font-style:'Montserrat', sans-serif;
+    font-style: bold;
+    font-weight: 900;
+    transition: background 80ms linear;
+    -webkit-transition: background 80ms linear;
+    -moz-transition: background 80ms linear;
+}
+
+.description {
+    position: inherit;
+    width: 100%;
+    margin-top:0px;
+}
+
+.hc-desc {
+    background: black;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 31px;
+    color:white;
+    padding-top: 5px;
+    padding-bottom: 10px;
+    transition: background 80ms linear;
+    -webkit-transition: background 80ms linear;
+    -moz-transition: background 80ms linear;
+}
+
+.bmc-desc {
+    background-color: #F3B720;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 31px;
+    color:white;
+    padding-top: 5px;
+    padding-bottom: 10px;
+    transition: background 80ms linear;
+    -webkit-transition: background 80ms linear;
+    -moz-transition: background 80ms linear;
+}
+
+.clock {
+    display:block;
+    justify-content: center;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    width:100%;
+    padding: 0px;
+    background-color:white;
+    text-align: center;
+    font-family: 'Open Sans', sans-serif;
+}
+
+/* .time:active {
+  opacity: 0.7;
+  transition: 70ms;
+} */
+
+#main-clock-desc {
+    position: relative;
+    text-align: center;
+    background: white;
+    font-size: 24px;
+    font-family: 'Open Sans', sans-serif;
+    font-style: italic;
+    font-weight: lighter;
+    padding-bottom: 5px;
+}
+
+.small-clock-desc {
+    position: relative;
+    text-align: center;
+    background: white;
+    font-size: 20px;
+    font-family: 'Open Sans', sans-serif;
+    font-style: italic;
+    font-weight: lighter;
+    padding-bottom: 3px;
+}
+
+#main-clock {
+    position: relative;
+    text-align: center;
+    background: black;
+    color: white;
+    width: 100%;
+    font-size: 60px;
+    margin-bottom: 40px;
+    transition: background 80ms linear;
+    -webkit-transition: background 80ms linear;
+    -moz-transition: background 80ms linear;
+}
+
+.small-clock {
+    position: relative;
+    text-align: center;
+    transform: scale(.8);
+    background: black;
+    color:white;
+    font-size:35px;
+    transition: background 80ms linear;
+    -webkit-transition: background 80ms linear;
+    -moz-transition: background 80ms linear;
+}
+
+
+}
