@@ -3,9 +3,14 @@ var express = require('express');
 var app = express();
 var http = require('http').Server(app);
 var rp = require("request-promise");
+var path = require('path');
+var favicon = require("serve-favicon");
+
 
 
 app.use(express.static(__dirname));
+app.use(favicon(path.join(__dirname, "/favicon.ico")));
+
 
 app.get("/busdata.shtml", async function(req, res) {
     var bus_data;
